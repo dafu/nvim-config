@@ -10,7 +10,7 @@ vim.api.nvim_set_keymap('', '<C-f>', [[:Lines<cr>]], {noremap = true, silent = t
 vim.api.nvim_set_keymap('', '<C-k><c-f>', [[:BLines<cr>]], {noremap = true, silent = true})
 
 --  Search selected text
-vim.api.nvim_set_keymap('', '<SPACE>', '<c-d>', { silent = true})
+-- vim.api.nvim_set_keymap('', '<SPACE>', '<c-d>', { silent = true})
 -- vim.api.nvim_set_keymap('', '<Shift><SPACE>', '<c-u>', { silent = true})
 vim.api.nvim_set_keymap('v', '//', 'y/<C-R>"<CR>', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', '<C-Down>', ':m >+1<CR>gv=gv', { noremap = true, silent = true})

@@ -1,12 +1,13 @@
--- require('lspkind').init({})
-
+require("nvim-lsp-installer").setup {
+  automatic_installation = true
+}
 local lsp_installer = require("nvim-lsp-installer")
+lsp_installer.on_server_ready(function (server) server:setup {} end)
 
 vim.cmd('hi LspDiagnosticsVirtualTextError guifg=Red ctermfg=Red')
 vim.cmd('hi LspDiagnosticsVirtualTextWarning ctermfg=239 guifg=#434c5e')
 vim.cmd('hi LspDiagnosticsVirtualTextInformation ctermfg=239 guifg=#434c5e')
 vim.cmd('hi LspDiagnosticsVirtualTextHint ctermfg=239 guifg=#434c5e')
-
 
 local signs = { Error = "! ", Warn = " ", Hint = " ", Info = " " }
 
@@ -24,14 +25,10 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function (server) server:setup {} end)
 
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-
---  buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
   local opts = { noremap=true, silent=true }
@@ -75,8 +72,9 @@ if client.resolved_capabilities.document_formatting then
   end
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
+ -- ADD CMP
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local lspconfig = require('lspconfig')
 

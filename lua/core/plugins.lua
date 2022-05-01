@@ -29,6 +29,7 @@ require "paq" {
   "hrsh7th/nvim-cmp";
   "dcampos/nvim-snippy";
   "dcampos/cmp-snippy";
+  "honza/vim-snippets" ;
   -- utils
   "nvim-lua/plenary.nvim";
   "lewis6991/impatient.nvim";
