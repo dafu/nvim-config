@@ -1,8 +1,6 @@
 require("nvim-lsp-installer").setup {
   automatic_installation = true
 }
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function (server) server:setup {} end)
 
 vim.cmd('hi LspDiagnosticsVirtualTextError guifg=Red ctermfg=Red')
 vim.cmd('hi LspDiagnosticsVirtualTextWarning ctermfg=239 guifg=#434c5e')
