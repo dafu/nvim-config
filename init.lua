@@ -10,6 +10,7 @@ local configs = {
   "configs.neoformat",
   "configs.gpg",
   "configs.nord",
+  "configs.bufferline",
   "core.disabled",
   "core.options",
   "core.statusline",

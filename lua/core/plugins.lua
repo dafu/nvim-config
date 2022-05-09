@@ -34,6 +34,7 @@ require "paq" {
   "nvim-lua/plenary.nvim";
   "lewis6991/impatient.nvim";
   -- colors
+  "akinsho/bufferline.nvim";
   "shaunsingh/nord.nvim";
   -- opt
   { "jamessan/vim-gnupg", opt=true };
