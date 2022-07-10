@@ -38,6 +38,10 @@ Reloadconfig()
 
 vim.cmd('command! Reloadconfig lua Reloadconfig()')
 
+-- highlight non ascii characters
+vim.cmd('syntax match nonascii "[^\x00-\x7F]"')
+vim.cmd('highlight nonascii guibg=Red ctermbg=2')
+
 -- package.path = package.path .. ";../timer.lua"
 
 --  if &listchars ==# 'eol:$'
