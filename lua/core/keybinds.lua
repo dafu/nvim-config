@@ -123,7 +123,7 @@ vim.api.nvim_set_keymap('',   [[<leader>es]], [[:let _s=@/<Bar>:%s/\s\+$//e<Bar>
 vim.api.nvim_set_keymap('',   [[<leader>dash]], [[:%s/val_.*,/val_,/g <Bar> let i=1 <Bar> g/val_/s//\='val_'.i/ <Bar> let i=i+1<CR>]] , { noremap = true, silent = true})
 vim.api.nvim_set_keymap('',   [[<leader>untab]], [[:%s/\t/\r/g<CR>]] , { noremap = true, silent = true})
 vim.api.nvim_set_keymap('',   [[<leader>totab]], [[:%s/\n/\t/g<CR>]] , { noremap = true, silent = true})
-vim.api.nvim_set_keymap('',   [[<leader>extractsql]], [[:%s/.*`\(.*\)`.*/\1/g<CR>]] , { noremap = true, silent = true})
+vim.api.nvim_set_keymap('',   [[<leader>ex]], [[:%s/.*`\(.*\)`.*/\1/g<CR>]] , { noremap = true, silent = true})
 vim.api.nvim_set_keymap('',   [[<leader>et]], [[:terminal<CR>]] , { noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('',   [[<leader>z]], [[:ZoomToggle<CR>]] , { noremap = true, silent = true})
 vim.api.nvim_set_keymap('',   [[<leader>x]], [[:Goyo<CR>]] , { noremap = true, silent = true})
