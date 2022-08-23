@@ -36,6 +36,7 @@ require "paq" {
   -- colors
   -- "akinsho/bufferline.nvim";
   "shaunsingh/nord.nvim";
+  -- "EdenEast/nightfox.nvim";
   -- opt
   { "jamessan/vim-gnupg", opt=true };
   { "liuchengxu/vista.vim", opt=true };
