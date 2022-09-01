@@ -51,7 +51,7 @@ vim.o.modeline=true
 -- wo.signcolumn = "yes"
 -- wo.cursorline = true
 
-vim.o.showcmd=false 
+vim.o.showcmd=true 
 vim.o.showmode=false
 vim.o.spell=false
 vim.o.startofline=false
