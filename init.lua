@@ -1,6 +1,7 @@
 local configs = {
   "core.plugins",
   "configs.lsp",
+  "configs.lspsaga",
   "configs.cmp",
   "configs.fzf",
   "configs.treesitter",

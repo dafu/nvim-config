@@ -15,6 +15,7 @@ require "paq" {
   "williamboman/nvim-lsp-installer";
   "neovim/nvim-lspconfig";
   "neovim/nvim-lsp";
+  "glepnir/lspsaga.nvim";
   "ojroques/vim-oscyank";
   "equalsraf/neovim-gui-shim";
   -- lang
@@ -32,6 +33,7 @@ require "paq" {
   "honza/vim-snippets" ;
   -- utils
   "nvim-lua/plenary.nvim";
+  "nvim-telescope/telescope.nvim";
   "lewis6991/impatient.nvim";
   -- colors
   -- "akinsho/bufferline.nvim";
