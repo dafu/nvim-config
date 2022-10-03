@@ -41,7 +41,7 @@ vim.o.list=true
 -- g.matchpairs+=<:>
 
 vim.o.mouse='a'
-vim.o.autochdir=true
+-- vim.o.autochdir=true
 vim.o.modeline=true
 
 -- wrap this in a toggle command
