@@ -11,6 +11,8 @@ require "paq" {
   "tpope/vim-surround";
   "tpope/vim-fugitive";
   "farmergreg/vim-lastplace";
+  
+  "lewis6991/gitsigns.nvim";
   -- lsp
   "williamboman/nvim-lsp-installer";
   "neovim/nvim-lspconfig";

@@ -1,5 +1,7 @@
-vim.o.laststatus=3
-vim.o.cmdheight=1
+-- vim.o.laststatus=3
+-- vim.o.cmdheight=1
+vim.o.ls=2
+vim.o.ch=0
 vim.o.showcmd=false
 
 -- vim.cmd('hi MsgArea ctermfg=239 guifg=#434c5e')

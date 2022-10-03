@@ -54,6 +54,7 @@ vim.api.nvim_set_keymap('v', 'p', '"_dP', { noremap = true, silent = true})
 
 -- map('', '<silent> <C-L>', ':nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>')
 
+vim.api.nvim_set_keymap('n', '<Leader>f', '<cmd>lua vim.lsp.buf.format()<CR>', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('', '<leader>w', ':w<CR>', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('', '<leader><leader>w', ':w<CR>', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('', '<leader><leader>q', ':wq<CR>', { noremap = true, silent = true})

@@ -10,6 +10,7 @@ local configs = {
   "configs.gopls",
   "configs.neoformat",
   "configs.gpg",
+  "configs.gitsigns",
   "configs.nord",
   "core.disabled",
   "core.options",

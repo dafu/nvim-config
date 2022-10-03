@@ -7,6 +7,7 @@ vim.cmd('hi LspDiagnosticsVirtualTextWarning ctermfg=239 guifg=#434c5e')
 vim.cmd('hi LspDiagnosticsVirtualTextInformation ctermfg=239 guifg=#434c5e')
 vim.cmd('hi LspDiagnosticsVirtualTextHint ctermfg=239 guifg=#434c5e')
 
+
 local signs = { Error = "! ", Warn = " ", Hint = " ", Info = " " }
 
 for type, icon in pairs(signs) do
@@ -48,27 +49,33 @@ local on_attach = function(client, bufnr)
 
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Set some keybinds conditional on server capabilities
-if client.resolved_capabilities.document_formatting then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-  elseif client.resolved_capabilities.document_range_formatting then
-    buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+  if client.server_capabilities.documentHighlightProvider then
+    vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+    vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
+    vim.api.nvim_create_autocmd("CursorHold", {
+      callback = vim.lsp.buf.document_highlight,
+      buffer = bufnr,
+      group = "lsp_document_highlight",
+      desc = "Document Highlight",
+    })
+    vim.api.nvim_create_autocmd("CursorMoved", {
+      callback = vim.lsp.buf.clear_references,
+      buffer = bufnr,
+      group = "lsp_document_highlight",
+      desc = "Clear All the References",
+    })
   end
+  -- -- Set some keybinds conditional on server capabilities
+  -- if client.server_capabilities.document_formatting then
+  --   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+  -- elseif client.server_capabilities.document_range_formatting then
+  --   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+  -- end
 
-  -- Set autocommands conditional on server_capabilities
-  if client.resolved_capabilities.document_highlight then
-    vim.api.nvim_exec([[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]], false)
-  end
 end
 
 
- -- ADD CMP
+-- ADD CMP
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local lspconfig = require('lspconfig')
@@ -82,15 +89,3 @@ for _, lsp in ipairs(servers) do
 end
 
 
-local t = function(str)
-  return vim.api.nvim_replace_termcodes(str, true, true, true)
-end
-
-local check_back_space = function()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        return true
-    else
-        return false
-    end
-end
