@@ -13,6 +13,7 @@ require "paq" {
   "farmergreg/vim-lastplace";
   
   "lewis6991/gitsigns.nvim";
+  "echasnovski/mini.nvim";
   -- lsp
   "williamboman/nvim-lsp-installer";
   "neovim/nvim-lspconfig";
