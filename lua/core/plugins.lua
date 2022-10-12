@@ -11,7 +11,6 @@ require "paq" {
   "tpope/vim-surround";
   "tpope/vim-fugitive";
   "farmergreg/vim-lastplace";
-  
   "lewis6991/gitsigns.nvim";
   "echasnovski/mini.nvim";
   -- lsp
@@ -19,7 +18,8 @@ require "paq" {
   "neovim/nvim-lspconfig";
   "neovim/nvim-lsp";
   "glepnir/lspsaga.nvim";
-  "ojroques/vim-oscyank";
+  "ibhagwan/smartyank.nvim";
+  -- "ojroques/vim-oscyank";
   "equalsraf/neovim-gui-shim";
   -- lang
   "fatih/vim-go";
