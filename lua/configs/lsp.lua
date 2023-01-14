@@ -12,15 +12,7 @@ addPkgs(p)
 -- table.concat(PKGS, p)
 -- PKGS = PKGS ..p
 
-require("mason").setup({
-  ui = {
-    icons = {
-      server_installed = "✓",
-      server_pending = "➜",
-      server_uninstalled = "✗",
-    },
-  },
-})
+require("mason").setup({})
 
 require("mason-lspconfig").setup({
   ensure_installed = lsp_servers,
@@ -196,17 +188,17 @@ lspconfig.denols.setup({
   },
 })
 
--- require("rust-tools").setup({
---   server = {
---     on_attach = on_attach,
---     capabilities = capabilities,
---     settings = {
---       ["rust-analyzer"] = {
---         checkOnSave = { command = "clippy" },
---       },
---     },
---   },
--- })
+require("rust-tools").setup({
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+      ["rust-analyzer"] = {
+        checkOnSave = { command = "clippy" },
+      },
+    },
+  },
+})
 -- lspconfig.sumneko_lua.setup({
 --   on_attach = on_attach,
 --   capabilities = capabilities,
