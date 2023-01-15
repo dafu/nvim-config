@@ -1,4 +1,5 @@
-vim.o.completeopt='menuone,noinsert,noselect'
+-- vim.o.completeopt='menuone,noinsert,noselect'
+vim.o.completeopt='menuone,noselect'
 
 vim.fn.setenv('LANG','en_US.UTF-8')
 -- vim.cmd([[let $LANG='en_US.UTF-8']])
@@ -48,7 +49,7 @@ vim.o.modeline=true
 -- wo.number = true
 -- wo.numberwidth = 3
 -- wo.relativenumber = true
--- wo.signcolumn = "yes"
+vim.wo.signcolumn = "yes"
 -- wo.cursorline = true
 
 vim.o.showcmd=true 
@@ -99,3 +100,41 @@ vim.o.formatoptions = vim.o.formatoptions .. 'j'                -- + 'j'     -- 
 
 -- set joinspaces
 vim.o.joinspaces = false         -- Two spaces
+
+
+
+vim.g.loaded_2html_plugin = false
+vim.g.loaded_getscript = false
+vim.g.loaded_getscriptPlugin = false
+vim.g.loaded_gzip = false
+vim.g.loaded_logipat = false
+-- vim.g.loaded_netrwFileHandlers = false
+-- vim.g.loaded_netrwPlugin = false
+-- vim.g.loaded_netrwSettngs = false
+vim.g.loaded_remote_plugins = false
+vim.g.loaded_tar = false
+vim.g.loaded_tarPlugin = false
+vim.g.loaded_zip = false
+vim.g.loaded_zipPlugin = false
+vim.g.loaded_vimball = false
+vim.g.loaded_vimballPlugin = false
+vim.g.zipPlugin = false
+
+
+-- Custom Statusline
+-- vim.o.laststatus=3
+-- vim.o.cmdheight=1
+vim.o.ls=3
+vim.o.ch=1
+vim.o.showcmd=true
+
+-- vim.cmd('hi MsgArea ctermfg=239 guifg=#434c5e')
+-- vim.cmd('hi MoreMsg ctermfg=239 guifg=#434c5e')
+-- vim.cmd('hi ModeMsg ctermfg=239 guifg=#434c5e')
+
+-- vim.cmd('hi Visual cterm=NONE ctermbg=cyan   ctermfg=black')
+-- vim.cmd('hi Search cterm=NONE ctermbg=yellow ctermfg=black')
+
+vim.o.statusline=[[%#Normal#%{(mode()=='n')?'N':''}%{(mode()=='i')?'I':''}%{(mode()=='r')?'R':''}%{(mode()=='v')?'V':''} %f %(%M%R%)]]
+vim.o.rulerformat=[[%70(%=%f %m%h%r%)]]
+vim.o.ruler=false
