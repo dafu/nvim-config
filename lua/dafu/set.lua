@@ -48,8 +48,8 @@ vim.o.modeline=true
 -- wrap this in a toggle command
 -- wo.number = true
 -- wo.numberwidth = 3
--- wo.relativenumber = true
-vim.wo.signcolumn = "yes"
+vim.o.relativenumber = true
+-- vim.wo.signcolumn = "yes"
 -- wo.cursorline = true
 
 vim.o.showcmd=true 
@@ -135,6 +135,35 @@ vim.o.showcmd=true
 -- vim.cmd('hi Visual cterm=NONE ctermbg=cyan   ctermfg=black')
 -- vim.cmd('hi Search cterm=NONE ctermbg=yellow ctermfg=black')
 
+  vim.cmd([[highlight FoldColumn cterm=NONE ctermfg=none ctermbg=none guifg=grey guibg=none ]])
+
 vim.o.statusline=[[%#Normal#%{(mode()=='n')?'N':''}%{(mode()=='i')?'I':''}%{(mode()=='r')?'R':''}%{(mode()=='v')?'V':''} %f %(%M%R%)]]
 vim.o.rulerformat=[[%70(%=%f %m%h%r%)]]
 vim.o.ruler=false
+
+vim.o.foldcolumn = '2'
+vim.o.foldlevel = 2
+vim.o.foldlevelstart = 2
+vim.o.foldenable = true
+-- vim.o.foldmethod = "indent"
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+-- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+-- -- vim.o.statuscolumn = "%=%l%s%C"
+-- -- vim.o.statuscolumn ='%C%l%=%s'
+-- vim.o.statuscolumn = "%@v:lua.ScFa@%C%T%@v:lua.ScLa@%s%T@v:lua.ScNa@%=%{v:lua.ScLn()}%T"
+-- -- vim.o.statuscolumn = "%=%{v:relnum?v:relnum:v:lnum}%=%s"
+-- vim.o.signcolumn = "yes:2"
+-- vim.o.numberwidth = 3
+-- vim.o.statuscolumn = '%=%l%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? " " : " ") : "  " }%*'
+
+vim.api.nvim_create_autocmd({"ColorScheme", "VimEnter"}, {
+  pattern = {"*"},
+  
+  callback = function()
+    vim.cmd([[highlight FoldColumn cterm=NONE ctermfg=none ctermbg=none guifg=grey guibg=none ]])
+    vim.cmd([[highlight Fold cterm=NONE ctermfg=none ctermbg=none guifg=grey guibg=none ]])
+    vim.cmd([[highlight Folded cterm=NONE ctermfg=none ctermbg=none guifg=grey guibg=none ]])
+  end,
+})
