@@ -167,3 +167,11 @@ vim.api.nvim_create_autocmd({"ColorScheme", "VimEnter"}, {
     vim.cmd([[highlight Folded cterm=NONE ctermfg=none ctermbg=none guifg=grey guibg=none ]])
   end,
 })
+
+local termGrp = vim.api.nvim_create_augroup("terminal_job", { clear = true })
+vim.api.nvim_create_autocmd("TermOpen", { command = "startinsert", group = termGrp, })
+vim.api.nvim_create_autocmd("TermOpen", { command = "setlocal listchars= nonumber norelativenumber", group = termGrp, })
+vim.api.nvim_create_autocmd("TermOpen", { command = "setlocal signcolumn=no foldcolumn=0 statuscolumn= listchars= nonumber norelativenumber", group = termGrp, })
+-- vim.api.nvim_create_autocmd("TermOpen", { command = "setlocal signcolumn=no foldcolumn=0 statuscolumn=0 statusline=%{b:term_title} listchars= nonumber norelativenumber", group = termGrp, })
+vim.api.nvim_create_autocmd("TermOpen", { command = [[tnoremap <C-w> <C-\><C-n><C-w>]], group = termGrp, })
+vim.api.nvim_create_autocmd("TermOpen", { command = [[tnoremap <silent> <C-[><C-[> <C-\><C-n>]], group = termGrp, })
