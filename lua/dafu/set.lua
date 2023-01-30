@@ -1,90 +1,74 @@
--- vim.o.completeopt='menuone,noinsert,noselect'
-vim.o.completeopt='menuone,noselect'
-
+-- vim.o.completeopt='menuone,noselect'
 vim.fn.setenv('LANG','en_US.UTF-8')
--- vim.cmd([[let $LANG='en_US.UTF-8']])
---  Options:
--- cmd 'syntax on'
-vim.o.undofile=true
+-- vim.o.undofile=true
 -- opt.undodir=[[$HOME/.cache/vim/undo]]
 -- opt.viminfo=[['10,\"100,:20,%,n$HOME/.cache/vim/viminfo]]
 vim.g.syntax=false
 -- cmd 'hi VertSplit ctermbg=0'
 vim.o.conceallevel=2
--- set t_Co=256
-vim.o.termguicolors = true
-
--- let g:vim_markdown_folding_disabled = 1
-
--- filetype plugin indent on
+-- vim.o.termguicolors = true
 vim.g.mapleader = ','
 vim.o.signcolumn="yes"
 vim.wo.number=true
-vim.o.autoindent=true
-vim.bo.autoindent=true
--- o.autoread="on"
-vim.o.backspace='indent,eol,start'
-vim.o.backup=false
--- g.complete-=i
--- set display+=lastline
-vim.o.encoding='UTF-8'
+-- vim.o.autoindent=true
+-- vim.bo.autoindent=true
 vim.o.expandtab=true
 vim.bo.expandtab=true
-vim.o.hidden=true
-vim.o.history=1000
-vim.o.ignorecase=true
-vim.o.smartcase=true
-vim.o.inccommand='nosplit'
-vim.o.incsearch=true
-vim.g.lazyredraw=true
-vim.o.list=true
--- o.listchars='extends:›,precedes:‹,nbsp:·,eol:\ ,tab:⍿\ ,trail:×'
--- g.matchpairs+=<:>
-
-vim.o.mouse='a'
--- vim.o.autochdir=true
-vim.o.modeline=true
-
--- wrap this in a toggle command
--- wo.number = true
--- wo.numberwidth = 3
-vim.o.relativenumber = true
--- vim.wo.signcolumn = "yes"
--- wo.cursorline = true
-
-vim.o.showcmd=true 
-vim.o.showmode=false
-vim.o.spell=false
-vim.o.startofline=false
-
-vim.wo.wrap = false
-vim.bo.textwidth = 300
-vim.bo.formatoptions = "qrn1"
-
-vim.o.shortmess=[[casItToOF]]
-vim.o.showmatch=true
-
-vim.o.smarttab=true
+-- vim.o.smarttab=true
 vim.o.softtabstop=2
 vim.bo.softtabstop=2
 vim.o.tabstop=2
 vim.bo.tabstop=2
 vim.o.shiftwidth=2
 vim.bo.shiftwidth=2
+-- vim.o.backspace='indent,eol,start'
+-- vim.o.backup=false
+-- vim.o.encoding='UTF-8'
+-- vim.o.hidden=true
+-- vim.o.history=200
+-- vim.o.ignorecase=true
+vim.o.smartcase=true
+vim.o.inccommand='split'
+-- vim.o.incsearch=true
+-- vim.g.lazyredraw=true -- only meant to be set temporarly
+-- vim.o.list=true
+-- o.listchars='extends:›,precedes:‹,nbsp:·,eol:\ ,tab:⍿\ ,trail:×'
+-- g.matchpairs+=<:>
+
+-- vim.o.mouse='a'
+-- vim.o.autochdir=true
+-- vim.o.modeline=true
+
+-- wrap this in a toggle command
+-- wo.number = true
+-- wo.numberwidth = 3
+vim.o.relativenumber = true
+-- vim.o.showcmd=true 
+vim.o.showmode=false
+-- vim.o.spell=false
+-- vim.o.startofline=false
+
+vim.wo.wrap = false
+vim.bo.textwidth = 300
+vim.bo.formatoptions = "qrn1"
+
+-- vim.o.shortmess=[[casItToOF]]
+vim.o.showmatch=true
+
 
 vim.o.splitright=true
 vim.o.splitbelow=true
 
-vim.o.timeoutlen = 500
+-- vim.o.timeoutlen = 500
 vim.o.updatetime = 100
-vim.g.ttyfast = true
+-- vim.g.ttyfast = true
 vim.o.scrolloff = 8
 
 vim.o.whichwrap=[[b,s,<,>,[,]]
 vim.o.titlestring=[[nvim\ %{&modified?'•':':'}\ %t]]
 vim.o.clipboard=[[unnamed,unnamedplus]]
 
-vim.o.wildmenu = true
+-- vim.o.wildmenu = true
 vim.o.wildcharm = 9
 vim.o.wildignorecase = true
 
@@ -99,7 +83,7 @@ vim.o.formatoptions = vim.o.formatoptions .. 'n'                -- + 'n'     -- 
 vim.o.formatoptions = vim.o.formatoptions .. 'j'                -- + 'j'     -- Auto-remove comments if possible.
 
 -- set joinspaces
-vim.o.joinspaces = false         -- Two spaces
+-- vim.o.joinspaces = false         -- Two spaces
 
 
 
@@ -120,7 +104,6 @@ vim.g.loaded_vimball = false
 vim.g.loaded_vimballPlugin = false
 vim.g.zipPlugin = false
 
-
 -- Custom Statusline
 -- vim.o.laststatus=3
 -- vim.o.cmdheight=1
@@ -138,25 +121,17 @@ vim.o.showcmd=true
   vim.cmd([[highlight FoldColumn cterm=NONE ctermfg=none ctermbg=none guifg=grey guibg=none ]])
 
 vim.o.statusline=[[%#Normal#%{(mode()=='n')?'N':''}%{(mode()=='i')?'I':''}%{(mode()=='r')?'R':''}%{(mode()=='v')?'V':''} %f %(%M%R%)]]
-vim.o.rulerformat=[[%70(%=%f %m%h%r%)]]
-vim.o.ruler=false
+-- vim.o.rulerformat=[[%70(%=%f %m%h%r%)]]
+-- vim.o.ruler=false
 
 vim.o.foldcolumn = '2'
 vim.o.foldlevel = 2
 vim.o.foldlevelstart = 2
-vim.o.foldenable = true
+vim.o.foldenable = false
 -- vim.o.foldmethod = "indent"
 vim.o.foldmethod = "expr"
 vim.o.foldexpr = "nvim_treesitter#foldexpr()"
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
--- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
--- -- vim.o.statuscolumn = "%=%l%s%C"
--- -- vim.o.statuscolumn ='%C%l%=%s'
--- vim.o.statuscolumn = "%@v:lua.ScFa@%C%T%@v:lua.ScLa@%s%T@v:lua.ScNa@%=%{v:lua.ScLn()}%T"
--- -- vim.o.statuscolumn = "%=%{v:relnum?v:relnum:v:lnum}%=%s"
--- vim.o.signcolumn = "yes:2"
--- vim.o.numberwidth = 3
--- vim.o.statuscolumn = '%=%l%s%#FoldColumn#%{foldlevel(v:lnum) > foldlevel(v:lnum - 1) ? (foldclosed(v:lnum) == -1 ? " " : " ") : "  " }%*'
 
 vim.api.nvim_create_autocmd({"ColorScheme", "VimEnter"}, {
   pattern = {"*"},
@@ -167,6 +142,16 @@ vim.api.nvim_create_autocmd({"ColorScheme", "VimEnter"}, {
     vim.cmd([[highlight Folded cterm=NONE ctermfg=none ctermbg=none guifg=grey guibg=none ]])
   end,
 })
+
+local termGrp = vim.api.nvim_create_augroup("buf_pre", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = {"*.svelte"},
+  buffer = buffer,
+  callback = function()
+    vim.lsp.buf.format { async = false }
+  end,
+  group = buf_pre,
+}) 
 
 local termGrp = vim.api.nvim_create_augroup("terminal_job", { clear = true })
 vim.api.nvim_create_autocmd("TermOpen", { command = "startinsert", group = termGrp, })

@@ -6,39 +6,24 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.cmd([[packadd packer.nvim]])
 end
 
--- use cache
-require("impatient")
-
 -- plugins
 require("packer").startup(function(use)
 	-- Plugin manager
-	use({ "wbthomason/packer.nvim" })
+	use("wbthomason/packer.nvim")
 
-	use({use 'JoosepAlviste/palenightfall.nvim',
-	setup = function() require('palenightfall').setup() end
-
-	})
-
-	use({
-		"luukvbaal/statuscol.nvim",
-		config = function() require("statuscol").setup(
-				{
-					separator = " ",
-					order = "SNsFs",
-					setopt = true,
-					--- The click actions have the following signature:
-					---@param args (table): {
-					---   minwid = minwid,            -- 1st argument to 'statuscolumn' %@ callback
-					---   clicks = clicks,            -- 2nd argument to 'statuscolumn' %@ callback
-					---   button = button,            -- 3rd argument to 'statuscolumn' %@ callback
-					---   mods = mods,                -- 4th argument to 'statuscolumn' %@ callback
-					---   mousepos = f.getmousepos()  -- getmousepos() table, containing clicked line number/window id etc.
-					--- }
-				}
-
+	-- statuscool
+	use{
+		'luukvbaal/statuscol.nvim',
+		config = function() require('statuscol').setup(
+			{
+				separator = ' ',
+				order = 'SNsFs',
+				setopt = true,
+			}
 			)
 		end
-	})
+	}
+
 	-- Essentials
 	use("lewis6991/impatient.nvim")
 	use("jamessan/vim-gnupg")
@@ -55,39 +40,49 @@ require("packer").startup(function(use)
 
 	use("sbdchd/neoformat")
 
-	use({
-		"ibhagwan/smartyank.nvim",
-		setup = function()
-			require("smartyank").setup({
-				highlight = {
-					enabled = true, -- highlight yanked text
-					higroup = "IncSearch", -- highlight group of yanked text
-					timeout = 500, -- timeout for clearing the highlight
-				},
-				clipboard = {
-					enabled = true,
-				},
-				tmux = {
-					enabled = true,
-					-- remove `-w` to disable copy to host client's clipboard
-					cmd = { "tmux", "set-buffer", "-w" },
-				},
-				osc52 = {
-					enabled = true,
-					-- escseq = 'tmux',     -- use tmux escape sequence, only enable if
-					-- you're using tmux and have issues (see #4)
-					ssh_only = true, -- false to OSC52 yank also in local sessions
-					silent = true, -- true to disable the "n chars copied" echo
-					echo_hl = "Directory", -- highlight group of the OSC52 echo message
-				},
-			})
-		end,
-	})
+	-- use{
+	-- 	'ibhagwan/smartyank.nvim',
+	-- 	setup = function()
+	-- 		require('smartyank').setup({
+	-- 			highlight = {
+	-- 				enabled = true, -- highlight yanked text
+	-- 				higroup = 'IncSearch', -- highlight group of yanked text
+	-- 				timeout = 500, -- timeout for clearing the highlight
+	-- 			},
+	-- 			clipboard = {
+	-- 				enabled = true,
+	-- 			},
+	-- 			tmux = {
+	-- 				enabled = true,
+	-- 				-- remove `-w` to disable copy to host client's clipboard
+	-- 				cmd = { 'tmux', 'set-buffer', '-w' },
+	-- 			},
+	-- 			osc52 = {
+	-- 				enabled = true,
+	-- 				-- escseq = 'tmux',     -- use tmux escape sequence, only enable if
+	-- 				-- you're using tmux and have issues (see #4)
+	-- 				ssh_only = true, -- false to OSC52 yank also in local sessions
+	-- 				silent = true, -- true to disable the 'n chars copied' echo
+	-- 				echo_hl = 'Directory', -- highlight group of the OSC52 echo message
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- }
+
 	-- use 'ojroques/vim-oscyank'
 	use("equalsraf/neovim-gui-shim")
 
+	-- Trouble
+	use {
+		"folke/trouble.nvim",
+		requires = "nvim-tree/nvim-web-devicons",
+		config = function()
+			require("trouble").setup()
+		end,
+	}
+
 	-- LSP
-	use({
+	use{
 		"VonHeikemen/lsp-zero.nvim",
 		requires = {
 			-- LSP Support
@@ -108,34 +103,34 @@ require("packer").startup(function(use)
 			-- Snippet Collection (Optional)
 			{ "rafamadriz/friendly-snippets" },
 			-- Useful status updates for LSP
-			"j-hui/fidget.nvim",
+			{ "j-hui/fidget.nvim" },
 
 			-- Additional lua configuration, makes nvim stuff amazing
-			"folke/neodev.nvim",
+			{ "folke/neodev.nvim" },
 		},
-	})
+	}
 
 	-- Treesitter
-	use({ -- Highlight, edit, and navigate code
-		"nvim-treesitter/nvim-treesitter",
+	use { 
+		'nvim-treesitter/nvim-treesitter',
 		run = function()
-			pcall(require("nvim-treesitter.install").update({ with_sync = true }))
+			pcall(require('nvim-treesitter.install').update({ with_sync = true }))
 		end,
-	})
+	}
 
-	use({ -- Additional text objects via treesitter
+	-- Additional text objects via treesitter
+	use { 		
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		after = "nvim-treesitter",
-	})
+	}
 
-	-- Git related plugins
-	use("tpope/vim-rhubarb")
-	use({
-		"lewis6991/gitsigns.nvim",
-		setup = function()
-			require("gitsigns").setup({})
+	-- Gitsigns
+	use {
+		'lewis6991/gitsigns.nvim',
+		config = function()
+			require('gitsigns').setup()
 		end,
-	})
+	}
 
 	use("kyazdani42/nvim-web-devicons")
 	-- use {
@@ -153,7 +148,7 @@ require("packer").startup(function(use)
 	-- }
 	--
 	-- Colorscheme
-	use({
+	use{
 		"projekt0n/github-nvim-theme",
 		config = function()
 			require("github-theme").setup({
@@ -164,7 +159,7 @@ require("packer").startup(function(use)
 				variable_style = "italic",
 			})
 		end,
-	})
+	}
 
 	use("lukas-reineke/indent-blankline.nvim") -- Add indentation guides even on blank lines
 	use("numToStr/Comment.nvim") -- "gc" to comment visual regions/lines
@@ -208,8 +203,6 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = vim.fn.expand("$MYVIMRC"),
 })
 
--- own stuff
-require("dafu")
 
 -- Enable Comment.nvim
 require("Comment").setup()
@@ -327,11 +320,34 @@ lsp.preset("recommended")
 
 lsp.setup()
 
+vim.diagnostic.config({
+  virtual_text = true,
+  -- signs = true,
+  -- update_in_insert = false,
+  -- underline = true,
+  -- severity_sort = true,
+  -- float = {
+  --   focusable = false,
+  --   style = 'minimal',
+  --   border = 'rounded',
+  --   source = 'always',
+  --   header = '',
+  --   prefix = '',
+  -- },
+})
+
 require("neodev").setup()
 require("fidget").setup()
 
 -- mini
 require("mini.align").setup()
 require("mini.statusline").setup()
+require("mini.basics").setup()
 -- require('mini.completion').setup()
 -- require('mini.cursorword').setup()
+-- own stuff
+require("dafu")
+
+vim.opt.shortmess:append('I') -- skip Intro
+vim.o.backspace='indent,eol,start' -- allow backspace
+vim.o.whichwrap=[[b,s,<,>,[,]] -- allow keys to cross eol
