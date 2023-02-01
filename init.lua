@@ -12,14 +12,14 @@ require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- statuscool
-	use{
+	use {
 		'luukvbaal/statuscol.nvim',
 		config = function() require('statuscol').setup(
-			{
-				separator = ' ',
-				order = 'SNsFs',
-				setopt = true,
-			}
+				{
+					separator = ' ',
+					order = 'SNsFs',
+					setopt = true,
+				}
 			)
 		end
 	}
@@ -82,7 +82,7 @@ require("packer").startup(function(use)
 	}
 
 	-- LSP
-	use{
+	use {
 		"VonHeikemen/lsp-zero.nvim",
 		requires = {
 			-- LSP Support
@@ -111,7 +111,7 @@ require("packer").startup(function(use)
 	}
 
 	-- Treesitter
-	use { 
+	use {
 		'nvim-treesitter/nvim-treesitter',
 		run = function()
 			pcall(require('nvim-treesitter.install').update({ with_sync = true }))
@@ -119,7 +119,7 @@ require("packer").startup(function(use)
 	}
 
 	-- Additional text objects via treesitter
-	use { 		
+	use {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 		after = "nvim-treesitter",
 	}
@@ -148,7 +148,7 @@ require("packer").startup(function(use)
 	-- }
 	--
 	-- Colorscheme
-	use{
+	use {
 		"projekt0n/github-nvim-theme",
 		config = function()
 			require("github-theme").setup({
@@ -321,19 +321,19 @@ lsp.preset("recommended")
 lsp.setup()
 
 vim.diagnostic.config({
-  virtual_text = true,
-  -- signs = true,
-  -- update_in_insert = false,
-  -- underline = true,
-  -- severity_sort = true,
-  -- float = {
-  --   focusable = false,
-  --   style = 'minimal',
-  --   border = 'rounded',
-  --   source = 'always',
-  --   header = '',
-  --   prefix = '',
-  -- },
+	virtual_text = true,
+	-- signs = true,
+	-- update_in_insert = false,
+	-- underline = true,
+	-- severity_sort = true,
+	-- float = {
+	--   focusable = false,
+	--   style = 'minimal',
+	--   border = 'rounded',
+	--   source = 'always',
+	--   header = '',
+	--   prefix = '',
+	-- },
 })
 
 require("neodev").setup()
@@ -349,5 +349,10 @@ require("mini.basics").setup()
 require("dafu")
 
 vim.opt.shortmess:append('I') -- skip Intro
-vim.o.backspace='indent,eol,start' -- allow backspace
-vim.o.whichwrap=[[b,s,<,>,[,]] -- allow keys to cross eol
+vim.o.backspace = 'indent,eol,start' -- allow backspace
+vim.o.whichwrap = [[b,s,<,>,[,]] -- allow keys to cross eol
+vim.o.expandtab = true
+-- vim.o.smarttab=true
+vim.o.softtabstop = 2
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
