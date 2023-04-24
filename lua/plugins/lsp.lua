@@ -17,19 +17,19 @@ return {
       lsp.setup()
 
       vim.diagnostic.config({
-        virtual_text = true,
-        -- signs = true,
+        virtual_text = false,
+        signs = true,
         -- update_in_insert = false,
         -- underline = true,
         -- severity_sort = true,
-        -- float = {
-        --   focusable = false,
-        --   style = 'minimal',
-        --   border = 'rounded',
-        --   source = 'always',
-        --   header = '',
-        --   prefix = '',
-        -- },
+        float = {
+          focusable = false,
+          style = 'minimal',
+          border = 'rounded',
+          source = 'always',
+          header = '',
+          prefix = '',
+        },
       })
       require("neodev").setup()
       require("fidget").setup()
