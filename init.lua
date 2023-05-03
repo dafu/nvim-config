@@ -6,6 +6,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- set mapleader before lazy
+vim.keymap.set("n", "<Space>", "<Nop>", { silent = true, remap = false })
 vim.g.mapleader = ' '
 -- disable for nvim-tree
 vim.g.loaded_netrw = 1
