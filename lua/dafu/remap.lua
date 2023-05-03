@@ -30,6 +30,7 @@ vim.api.nvim_set_keymap('', 'gW', '<cmd>exec "grep! -wF -- "..shellescape(expand
 
 -- LEADER
 -- leader overrides
+vim.api.nvim_set_keymap('', '<leader>cd', ':lcd %:p:h', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('', '<leader>dd', '"_dd', { noremap = true, silent = true})
 vim.api.nvim_set_keymap('', '<leader>dp', '"_ddp', { noremap = true, silent = true})
 --
