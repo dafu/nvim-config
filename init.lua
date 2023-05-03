@@ -30,6 +30,8 @@ vim.o.softtabstop = 2
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 
+vim.o.clipboard=[[unnamed,unnamedplus]]
+
 
 local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
