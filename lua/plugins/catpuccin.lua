@@ -45,23 +45,8 @@ return {
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
       },
     })
-    vim.cmd([[colorscheme catppuccin]])
   end
 }
 }
 
-
--- 'projekt0n/github-nvim-theme',
--- lazy = false,
--- priority = 1000,
--- config = function()
--- 	-- require('github-theme').setup({
--- 	-- 	comment_style = 'italic',
--- 	-- 	keyword_style = 'italic',
--- 	-- 	function_style = 'italic',
--- 	-- 	variable_style = 'italic',
--- 	-- })
--- 	vim.cmd([[colorscheme github_dimmed]])
--- end,
--- },
 
