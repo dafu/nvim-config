@@ -32,6 +32,17 @@ vim.o.shiftwidth = 2
 
 vim.o.clipboard=[[unnamed,unnamedplus]]
 
+-- syntax highlight non ascii characters
+vim.cmd[[syntax match nonascii "[^\x00-\x7F]"]]
+vim.cmd[[highlight nonascii guifg=black guibg=darkyellow]]
+-- ß
+-- ßüö
+vim.cmd([[
+augroup nonascii
+autocmd!
+autocmd ColorScheme * highlight nonascii guifg=black guibg=darkyellow 
+augroup end
+]])
 
 local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
