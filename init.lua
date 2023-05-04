@@ -68,4 +68,4 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end
 })
 
-vim.cmd([[colorscheme tokyonight]])
+vim.cmd([[colorscheme tokyonight-night]])
