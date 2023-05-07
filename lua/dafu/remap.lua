@@ -91,6 +91,7 @@ vim.api.nvim_set_keymap('',   [[<leader>untab]], [[:%s/\t/\r/g<CR>]] , { noremap
 vim.api.nvim_set_keymap('',   [[<leader>totab]], [[:%s/\n/\t/g<CR>]] , { noremap = true, silent = true})
 vim.api.nvim_set_keymap('',   [[<leader>ex]], [[:%s/.*`\(.*\)`.*/\1/g<CR>]] , { noremap = true, silent = true})
 vim.api.nvim_set_keymap('',   [[<leader>et]], [[:terminal<CR>]] , { noremap = true, silent = true})
+vim.api.nvim_set_keymap('',   [[<leader>ez]], [[:vsplit term://%:p:h//mksh<CR>]] , { noremap = true, silent = true})
 
 vim.api.nvim_create_user_command('Quote',  [[execute '%s/^.\+$/"&"/g']], {})
 vim.api.nvim_create_user_command('Squote', [[execute '%s/^.\+$/''&''/g']], {})
