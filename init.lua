@@ -12,7 +12,7 @@ vim.g.mapleader = ' '
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Plugins 
+-- Plugins
 require("lazy").setup('plugins')
 
 -- own stuff
@@ -30,42 +30,25 @@ vim.o.softtabstop = 2
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 
+vim.o.cursorline = false
+
 vim.o.clipboard=[[unnamed,unnamedplus]]
 
+-- require('nord').set()
 -- syntax highlight non ascii characters
-vim.cmd[[syntax match nonascii "[^\x00-\x7F]"]]
-vim.cmd[[highlight nonascii guifg=black guibg=darkyellow]]
+vim.cmd[[syntax match xasciii '[^\x00-\x7F]']]
+vim.cmd[[highlight xasciii guifg=black guibg=darkyellow]]
 -- ß
+-- ä
 -- ßüö
 vim.cmd([[
-augroup nonascii
+augroup xasciii
 autocmd!
-autocmd ColorScheme * highlight nonascii guifg=black guibg=darkyellow 
+autocmd ColorScheme * highlight xasciii guifg=black guibg=darkyellow
 augroup end
 ]])
 
-local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-   require('go.format').goimport()
-  end,
-  group = format_sync_grp,
-})
 
-vim.api.nvim_create_autocmd("CursorHold", {
-  buffer = bufnr,
-  callback = function()
-    local opts = {
-      focusable = false,
-      close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-      border = 'rounded',
-      source = 'always',
-      prefix = ' ',
-      scope = 'cursor',
-    }
-    vim.diagnostic.open_float(nil, opts)
-  end
-})
 
-vim.cmd([[colorscheme tokyonight-night]])
+require('custom.nonascii').setup({})
+-- vim.cmd([[colorscheme tokyonight-night]])

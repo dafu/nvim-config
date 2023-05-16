@@ -124,24 +124,24 @@ vim.o.statusline=[[%#Normal#%{(mode()=='n')?'N':''}%{(mode()=='i')?'I':''}%{(mod
 -- vim.o.rulerformat=[[%70(%=%f %m%h%r%)]]
 -- vim.o.ruler=false
 
-vim.o.foldcolumn = '2'
-vim.o.foldlevel = 2
-vim.o.foldlevelstart = 2
-vim.o.foldenable = false
--- vim.o.foldmethod = "indent"
-vim.o.foldmethod = "expr"
-vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+-- vim.o.foldcolumn = '2'
+-- vim.o.foldlevel = 2
+-- vim.o.foldlevelstart = 2
+-- vim.o.foldenable = false
+-- -- vim.o.foldmethod = "indent"
+-- vim.o.foldmethod = "expr"
+-- vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
-vim.api.nvim_create_autocmd({"ColorScheme", "VimEnter"}, {
-  pattern = {"*"},
+-- vim.api.nvim_create_autocmd({"ColorScheme", "VimEnter"}, {
+--   pattern = {"*"},
   
-  callback = function()
-    vim.cmd([[highlight FoldColumn cterm=NONE ctermfg=none ctermbg=none guifg=grey guibg=none ]])
-    vim.cmd([[highlight Fold cterm=NONE ctermfg=none ctermbg=none guifg=grey guibg=none ]])
-    vim.cmd([[highlight Folded cterm=NONE ctermfg=none ctermbg=none guifg=grey guibg=none ]])
-  end,
-})
+--   callback = function()
+--     vim.cmd([[highlight FoldColumn cterm=NONE ctermfg=none ctermbg=none guifg=grey guibg=none ]])
+--     vim.cmd([[highlight Fold cterm=NONE ctermfg=none ctermbg=none guifg=grey guibg=none ]])
+--     vim.cmd([[highlight Folded cterm=NONE ctermfg=none ctermbg=none guifg=grey guibg=none ]])
+--   end,
+-- })
 
 local termGrp = vim.api.nvim_create_augroup("buf_pre", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", {

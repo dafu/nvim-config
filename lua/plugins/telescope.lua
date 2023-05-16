@@ -5,17 +5,18 @@ return {
     lazy = true,
     dependencies = {
       {'nvim-lua/plenary.nvim'},
+      {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
     },
     version = false, -- telescope did only one release, so use HEAD for now
     keys = {
       { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
-      --{ "<leader>/", Util.telescope("live_grep"), desc = "Find in Files (Grep)" },
+      { "<leader>/", "<cmd>Telescope live_grep", desc = "Find in Files (Grep)" },
       { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       --{ "<leader><space>", Util.telescope("files"), desc = "Find Files (root dir)" },
       -- find
       { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-      --{ "<leader>ff", Util.telescope("files"), desc = "Find Files (root dir)" },
-      --{ "<leader>fF", Util.telescope("files", { cwd = false }), desc = "Find Files (cwd)" },
+      -- { "<leader>ff", Util.("files"), desc = "Find Files (root dir)" },
+      -- { "<leader>fF", Util.("files", { cwd = false }), desc = "Find Files (cwd)" },
       { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       -- git
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
@@ -44,6 +45,9 @@ return {
         selection_caret = " ",
         mappings = {
           i = {
+            ["<esc>"] = function(...)
+              return require("telescope.actions").close
+            end,
             ["<c-t>"] = function(...)
               return require("trouble.providers.telescope").open_with_trouble(...)
             end,
