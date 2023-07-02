@@ -3,6 +3,7 @@ return {
   config = function()
     require("mini.trailspace").setup()
     require("mini.sessions").setup()
+    require("mini.files").setup()
     require("mini.align").setup()
     require("mini.statusline").setup(
     {
