@@ -49,6 +49,12 @@ augroup end
 ]])
 
 
+local cmp = require('cmp')
+cmp.setup({
+  mapping = {
+    ['<CR>'] = cmp.mapping.confirm({select = false}),
+  }
+})
 
 require('custom.nonascii').setup({})
 -- vim.cmd([[colorscheme tokyonight-night]])
