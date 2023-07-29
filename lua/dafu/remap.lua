@@ -1,11 +1,11 @@
 -- move lines
 -- TODO fix:
+vim.api.nvim_set_keymap('', '<PageDown>', '<nop>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('', '<PageUp>' ,'<nop>', { noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('v', '<C-Down>', ':m >+1<CR>gv=gv', { noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('v', '<C-Up>' ,':m <-2<CR>gv=gv', { noremap = true, silent = true})
---  Disable cmd history
+--  Disable cmd history - use : & ctrl+f instead
 vim.api.nvim_set_keymap('', 'q:', '<nop>', { noremap = true, silent = true})
--- vim.api.nvim_set_keymap('', 'Q', '<nop>', { noremap = true, silent = true})
-vim.api.nvim_set_keymap('', 'Q', ':History:<cr>', { noremap = true, silent = true})
 -- SELECTION
 vim.api.nvim_set_keymap('v', '//', 'y/<C-R>"<CR>', { noremap = true, silent = true})
 -- indent
