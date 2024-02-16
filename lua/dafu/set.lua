@@ -6,7 +6,7 @@ vim.fn.setenv('LANG','en_US.UTF-8')
 vim.g.syntax=false
 -- cmd 'hi VertSplit ctermbg=0'
 vim.o.conceallevel=2
--- vim.o.termguicolors = true
+vim.o.termguicolors = true
 vim.g.mapleader = ','
 vim.o.signcolumn="yes"
 vim.wo.number=true
@@ -43,12 +43,12 @@ vim.o.inccommand='split'
 -- wo.number = true
 -- wo.numberwidth = 3
 vim.o.relativenumber = true
--- vim.o.showcmd=true 
+-- vim.o.showcmd=true
 vim.o.showmode=false
 -- vim.o.spell=false
 -- vim.o.startofline=false
 
-vim.wo.wrap = false
+vim.wo.wrap = true
 vim.bo.textwidth = 300
 vim.bo.formatoptions = "qrn1"
 
@@ -62,7 +62,7 @@ vim.o.splitbelow=true
 -- vim.o.timeoutlen = 500
 vim.o.updatetime = 100
 -- vim.g.ttyfast = true
-vim.o.scrolloff = 8
+vim.g.scrolloff = 8
 
 vim.o.whichwrap=[[b,s,<,>,[,]]
 vim.o.titlestring=[[nvim\ %{&modified?'•':':'}\ %t]]

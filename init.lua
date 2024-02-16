@@ -13,7 +13,10 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Plugins
-require("lazy").setup('plugins')
+require('lazy').setup('plugins', {
+  ui = { border = 'rounded' },
+  change_detection = { notify = false },
+})
 
 -- own stuff
 require("dafu")
@@ -29,6 +32,7 @@ vim.o.expandtab = true
 vim.o.softtabstop = 2
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
+vim.o.scrolloff = 6
 
 vim.o.cursorline = false
 
@@ -51,8 +55,20 @@ augroup end
 
 local cmp = require('cmp')
 cmp.setup({
+    sources = {
+        { name = "nvim_lua" },
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "vim-dadbod-completion" },
+        { name = "path" },
+        { name = "buffer", keyword_length = 5 },
+    },
+    {
+        { name = "buffer" },
+    },
   mapping = {
     ['<CR>'] = cmp.mapping.confirm({select = false}),
+    ['<C-Space>'] = cmp.mapping.complete(),
   }
 })
 

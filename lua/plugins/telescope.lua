@@ -5,19 +5,21 @@ return {
     lazy = true,
     dependencies = {
       {'nvim-lua/plenary.nvim'},
-      {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' }
+      {'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      'nvim-telescope/telescope-ui-select.nvim'
     },
+    ft = 'mason', -- SOLUTION
     version = false, -- telescope did only one release, so use HEAD for now
     keys = {
       { "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch Buffer" },
-      { "<leader>/", "<cmd>Telescope live_grep", desc = "Find in Files (Grep)" },
+      { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Find in Files (Grep)" },
+      { "<leader>sg", function () require 'telescope.builtin'.live_grep() end, desc = "Grep (root dir)" },
+      { "<leader>sG", function () require 'telescope.builtin'.live_grep({ cwd = false }) end, desc = "Grep (cwd)" },
       { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-      --{ "<leader><space>", Util.telescope("files"), desc = "Find Files (root dir)" },
       -- find
-      { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-      -- { "<leader>ff", Util.("files"), desc = "Find Files (root dir)" },
-      -- { "<leader>fF", Util.("files", { cwd = false }), desc = "Find Files (cwd)" },
-      { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+      { "<leader>o", function () require 'telescope.builtin'.git_files() end, desc = "Find Files (cwd)" },
+      { "<leader>O", function () require 'telescope.builtin'.find_files() end, desc = "Find Files (root dir)" },
+      { "<leader>P", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
       -- git
       { "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
       { "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },
@@ -27,8 +29,6 @@ return {
       { "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
       { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
       { "<leader>sd", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
-      --{ "<leader>sg", Util.telescope("live_grep"), desc = "Grep (root dir)" },
-      --{ "<leader>sG", Util.telescope("live_grep", { cwd = false }), desc = "Grep (cwd)" },
       { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
       { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
       { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
@@ -56,6 +56,12 @@ return {
             end,
             ["<a-h>"] = function()
               --Util.telescope("find_files", { hidden = true })()
+            end,
+            ["<C-n>"] = function(...)
+              return require("telescope.actions").cycle_history_next(...)
+            end,
+            ["<C-p>"] = function(...)
+              return require("telescope.actions").cycle_history_prev(...)
             end,
             ["<C-Down>"] = function(...)
               return require("telescope.actions").cycle_history_next(...)

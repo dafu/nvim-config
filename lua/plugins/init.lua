@@ -9,7 +9,23 @@ return {
   'tpope/vim-surround',
   'tpope/vim-fugitive',
   'farmergreg/vim-lastplace',
-  'sbdchd/neoformat',
   'ojroques/vim-oscyank',
   'equalsraf/neovim-gui-shim',
+  -- {
+  --   'AlexvZyl/nordic.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     require 'nordic' .load()
+  --   end
+  -- },
+  -- database stuff
+  'kristijanhusak/vim-packager',
+  'tpope/vim-dadbod',
+  'kristijanhusak/vim-dadbod-ui',
+  'kristijanhusak/vim-dadbod-completion',
+
+  -- formatter
+  -- 'mhartington/formatter.nvim',
+  -- 'sbdchd/neoformat',
 }
