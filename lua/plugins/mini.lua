@@ -1,45 +1,69 @@
-return {
-  'echasnovski/mini.nvim',
-  config = function()
-    require("mini.trailspace").setup()
-    require("mini.sessions").setup()
-    require("mini.files").setup()
-    require("mini.align").setup()
-    require("mini.statusline").setup(
-    {
-      content = {
-        active = 
-        function()
-          local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 800 })
-          local git           = MiniStatusline.section_git({ trunc_width = 75 })
-          local diagnostics   = MiniStatusline.section_diagnostics({ trunc_width = 75 })
-          local filename      = MiniStatusline.section_filename({ trunc_width = 140 })
-          local fileinfo      = MiniStatusline.section_fileinfo({ trunc_width = 120 })
-          local location      = MiniStatusline.section_location({ trunc_width = 75 })
+local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
-          return MiniStatusline.combine_groups({
-            { hl = mode_hl,                  strings = { mode } },
-            { hl = 'MiniStatuslineDevinfo',  strings = { git, diagnostics } },
-            '%<', -- Mark general truncate point
-            { hl = 'MiniStatuslineFileinfo', strings = { filename } },
-            '%=', -- End left alignment
-            { hl = 'MiniStatuslineFileinfo', strings = { fileinfo } },
-            -- { hl = mode_hl,                  strings = { location } },
-          })
-        end,
-        inactive = function()
-          local filename      = MiniStatusline.section_filename({ trunc_width = 140 })
+now(function()
+  require('mini.basics').setup {
+    options = {
+      basic = true,
+      extra_ui = true,
+      win_borders = 'solid',
+    },
+    mappings = {
+      windows = true,
+    },
+    autocommands = {
+      basic = true,
+      relnum_in_visual_mode = true,
+    },
+  }
+  require('mini.hues').setup {
+    background = '#2e3440',
+    foreground = '#eceff4',
+    accent = 'bg',
+    hues = 2,
+    plugins = {
+      default = false,
+      ['echasnovski/mini.nvim'] = true,
+      ['folke/trouble.nvim'] = true,
+      ['hrsh7th/nvim-cmp'] = true,
+      ['lewis6991/gitsigns.nvim'] = true,
+      ['williamboman/mason.nvim'] = true,
+    },
+  } -- nord
 
-          return MiniStatusline.combine_groups({
-            { hl = 'MiniStatuslineFileinfo', strings = { filename } },
-          })
-        end,
-      },
-      use_icons = true,
-      set_vim_settings = false,
-    })
-    require("mini.basics").setup()
-    -- require('mini.completion').setup()
-    -- require('mini.cursorword').setup()
-  end
-}
+  require('mini.notify').setup()
+  vim.notify = require('mini.notify').make_notify()
+
+  require('mini.tabline').setup()
+  require('mini.files').setup()
+
+  vim.o.cmdheight = 0
+  vim.o.laststatus = 3
+  require('mini.statusline').setup {
+    -- Whether to set Vim's settings for statusline (make it always shown with
+    -- 'laststatus' set to 2). To use global statusline in Neovim>=0.7.0, set
+    -- this to `false` and 'laststatus' to 3.
+    set_vim_settings = false,
+  }
+  require('mini.starter').setup()
+  require('mini.ai').setup()
+  require('mini.comment').setup()
+  require('mini.pick').setup()
+  require('mini.surround').setup()
+  require('mini.bufremove').setup()
+  require('mini.indentscope').setup()
+  require('mini.visits').setup()
+
+  local hipatterns = require 'mini.hipatterns'
+  hipatterns.setup {
+    highlighters = {
+      -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+      fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+      hack = { pattern = '%f[%w]()HACK()%f[%W]', group = 'MiniHipatternsHack' },
+      todo = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
+      note = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
+
+      -- Highlight hex color strings (`#rrggbb`) using that color
+      hex_color = hipatterns.gen_highlighter.hex_color(),
+    },
+  }
+end)
