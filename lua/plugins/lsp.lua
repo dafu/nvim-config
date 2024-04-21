@@ -12,14 +12,14 @@ add("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
 now(function()
 	add("ray-x/go.nvim")
 	require("go").setup()
-	local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
-	vim.api.nvim_create_autocmd("BufWritePre", {
-		pattern = "*.go",
-		callback = function()
-			require("go.format").goimport()
-		end,
-		group = format_sync_grp,
-	})
+	-- local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+	-- vim.api.nvim_create_autocmd("BufWritePre", {
+	-- 	pattern = "*.go",
+	-- 	callback = function()
+	-- 		require("go.format").goimport()
+	-- 	end,
+	-- 	group = format_sync_grp,
+	-- })
 end)
 --
 --   add 'lewis6991/gitsigns.nvim'
@@ -358,14 +358,14 @@ end)
 now(function()
 	add("stevearc/conform.nvim")
 	require("conform").setup({
-		notify_on_error = false,
+		notify_on_error = true,
 		format_on_save = {
 			timeout_ms = 500,
 			lsp_fallback = true,
 		},
 		formatters_by_ft = {
 			lua = { "stylua" },
-			go = { "gofmt" },
+			go = { "goimports", "gofmt" },
 			-- sql = { 'sqlfmt' },
 			javascript = { { "prettierd", "prettier" } },
 			html = { { "prettierd", "prettier" } },
