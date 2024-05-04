@@ -7,6 +7,16 @@ now(function()
 	require("nvim-web-devicons").setup()
 end)
 
+now(function()
+	add("folke/trouble.nvim")
+	require("trouble").setup()
+end)
+
+now(function()
+	add({ source = "nvim-neo-tree/neo-tree.nvim", depends = { "nvim-lua/plenary.nvim", "MunifTanjim/nui.nvim" } })
+	require("neo-tree").setup()
+end)
+
 add("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
 
 now(function()
