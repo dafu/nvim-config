@@ -400,6 +400,7 @@ now(function()
 			lua = { "stylua" },
 			go = { "goimports", "gofmt" },
 			-- sql = { 'sqlfmt' },
+			sql = { "sqlfluff" },
 			javascript = { { "prettierd", "prettier" } },
 			html = { { "prettierd", "prettier" } },
 		},
