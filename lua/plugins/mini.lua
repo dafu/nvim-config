@@ -76,6 +76,7 @@ now(function()
 	-- require("mini.indentscope").setup()
 	require("mini.visits").setup()
 	require("mini.diff").setup()
+	require("mini.extra").setup()
 
 	local hipatterns = require("mini.hipatterns")
 	hipatterns.setup({
