@@ -1,7 +1,8 @@
 -- lazy bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath, })
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable",
+    lazypath, })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -32,12 +33,12 @@ vim.o.shiftwidth = 2
 
 vim.o.cursorline = false
 
-vim.o.clipboard=[[unnamed,unnamedplus]]
+vim.o.clipboard = [[unnamed,unnamedplus]]
 
 -- require('nord').set()
 -- syntax highlight non ascii characters
-vim.cmd[[syntax match xasciii '[^\x00-\x7F]']]
-vim.cmd[[highlight xasciii guifg=black guibg=darkyellow]]
+vim.cmd [[syntax match xasciii '[^\x00-\x7F]']]
+vim.cmd [[highlight xasciii guifg=black guibg=darkyellow]]
 -- ß
 -- ä
 -- ßüö
@@ -52,3 +53,25 @@ augroup end
 
 require('custom.nonascii').setup({})
 -- vim.cmd([[colorscheme tokyonight-night]])
+--
+--
+--
+if vim.g.neovide then
+  vim.o.guifont                             = "JetBrainsMono NF:h9" -- text below applies for VimScript
+
+  vim.opt.linespace                         = 0
+  vim.g.neovide_scale_factor                = 1.0
+  vim.g.neovide_cursor_animation_length     = 0
+  vim.g.neovide_scroll_animation_length     = 0
+  vim.g.neovide_transparency                = 0.97
+  vim.g.neovide_remember_window_size        = true
+  vim.g.neovide_scroll_animation_length     = 0
+  vim.g.neovide_cursor_animate_command_line = false
+  vim.g.neovide_cursor_trail_size           = 0
+
+  vim.keymap.set({ "n", "v" }, "<C-+>", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1<CR>",
+    { silent = true, remap = false })
+  vim.keymap.set({ "n", "v" }, "<C-->", ":lua vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.1<CR>",
+    { silent = true, remap = false })
+  vim.keymap.set({ "n", "v" }, "<C-0>", ":lua vim.g.neovide_scale_factor = 1<CR>", { silent = true, remap = false })
+end

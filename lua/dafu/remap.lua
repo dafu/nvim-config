@@ -98,8 +98,9 @@ vim.api.nvim_set_keymap('',   [[<leader>ex]], [[:%s/.*`\(.*\)`.*/\1/g<CR>]] , { 
 vim.api.nvim_create_user_command('Equote',  [[execute '%s/^.\+$/"&"/g']], {})
 vim.api.nvim_create_user_command('Esquote', [[execute '%s/^.\+$/''&''/g']], {})
 vim.api.nvim_create_user_command('Ereverse', [[execute 'g/^/m0']], {})
-vim.api.nvim_create_user_command('Euntab', [[execute :%s/\t/\r/g<CR>]], {})
-vim.api.nvim_create_user_command('Etotab', [[execute :%s/\n/\t/g<CR>]], {})
+vim.api.nvim_create_user_command('Euntab', [[execute %s/\t/\r/g<CR>]], {})
+vim.api.nvim_create_user_command('Etotab', [[execute %s/\n/\t/g<CR>]], {})
+vim.api.nvim_create_user_command('Ereset', [[execute "%s/`(.*)`.*DEFAULT/Me.\1 = / | %s/,$// | %s/'0'/FALSE/"]], {})
 -- vim.api.nvim_create_user_command('Idin', [[execute '%s/^.\+$/''&''/g' | ]], {})
 -- vim.api.nvim_create_user_command('IdIn', [[execute '%s/\(.*\)/"\1"/g']], {})
 
