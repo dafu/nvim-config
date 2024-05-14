@@ -15,22 +15,22 @@ now(function()
 			relnum_in_visual_mode = true,
 		},
 	})
-	require("mini.hues").setup({
-		background = "#2e3440",
-		foreground = "#eceff4",
-
-		accent = "bg",
-		-- saturation = "low",
-		n_hues = 4,
-		plugins = {
-			default = true,
-			-- ["echasnovski/mini.nvim"] = true,
-			-- ["folke/trouble.nvim"] = true,
-			-- ["hrsh7th/nvim-cmp"] = true,
-			-- ["lewis6991/gitsigns.nvim"] = true,
-			-- ["williamboman/mason.nvim"] = true,
-		},
-	}) -- nord
+	-- require("mini.hues").setup({
+	-- 	background = "#2e3440",
+	-- 	foreground = "#eceff4",
+	--
+	-- 	accent = "bg",
+	-- 	-- saturation = "low",
+	-- 	n_hues = 4,
+	-- 	plugins = {
+	-- 		default = true,
+	-- 		-- ["echasnovski/mini.nvim"] = true,
+	-- 		-- ["folke/trouble.nvim"] = true,
+	-- 		-- ["hrsh7th/nvim-cmp"] = true,
+	-- 		-- ["lewis6991/gitsigns.nvim"] = true,
+	-- 		-- ["williamboman/mason.nvim"] = true,
+	-- 	},
+	-- }) -- nord
 
 	require("mini.notify").setup()
 	vim.notify = require("mini.notify").make_notify()

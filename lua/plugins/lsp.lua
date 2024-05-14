@@ -399,7 +399,6 @@ now(function()
 		formatters_by_ft = {
 			lua = { "stylua" },
 			go = { "goimports", "gofmt" },
-			-- sql = { 'sqlfmt' },
 			sql = { "sqlfluff" },
 			javascript = { { "prettierd", "prettier" } },
 			html = { { "prettierd", "prettier" } },
