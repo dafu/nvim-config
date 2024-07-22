@@ -7,6 +7,16 @@ now(function()
 	require("nvim-web-devicons").setup()
 end)
 
+now(function()
+	add("folke/trouble.nvim")
+	require("trouble").setup()
+end)
+
+now(function()
+	add({ source = "nvim-neo-tree/neo-tree.nvim", depends = { "nvim-lua/plenary.nvim", "MunifTanjim/nui.nvim" } })
+	require("neo-tree").setup()
+end)
+
 add("tpope/vim-sleuth") -- Detect tabstop and shiftwidth automatically
 
 now(function()
@@ -203,6 +213,29 @@ now(function()
 				vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 			end
 
+			-- Displays hover information about the symbol under the cursor
+			map("K", "<cmd>lua vim.lsp.buf.hover()<cr>", "")
+			-- Jump to the definition
+			map("gd", "<cmd>lua vim.lsp.buf.definition()<cr>", "")
+			-- Jump to declaration
+			map("gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", "")
+			-- Lists all the implementations for the symbol under the cursor
+			map("gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", "")
+			-- Jumps to the definition of the type symbol
+			map("go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", "")
+			-- Lists all the references
+			map("gr", "<cmd>lua vim.lsp.buf.references()<cr>", "")
+			-- Displays a function's signature information
+			map("gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", "")
+			-- Renames all references to the symbol under the cursor
+			map("<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", "")
+			-- Selects a code action available at the current cursor position
+			map("<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", "")
+			-- Show diagnostics in a floating window
+			map("gl", "<cmd>lua vim.diagnostic.open_float()<cr>", "")
+			-- Move to the previous diagnostic
+			map("[d", "<cmd>lua vim.diagnostic.goto_prev()<cr>", "")
+
 			-- Jump to the definition of the word under your cursor.
 			--  This is where a variable was first declared, or where a function is defined, etc.
 			--  To jump back, press <C-T>.
@@ -366,7 +399,7 @@ now(function()
 		formatters_by_ft = {
 			lua = { "stylua" },
 			go = { "goimports", "gofmt" },
-			-- sql = { 'sqlfmt' },
+			sql = { "sqlfluff" },
 			javascript = { { "prettierd", "prettier" } },
 			html = { { "prettierd", "prettier" } },
 		},
