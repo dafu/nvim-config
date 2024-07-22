@@ -30,7 +30,9 @@ now(function()
 			-- ["lewis6991/gitsigns.nvim"] = true,
 			-- ["williamboman/mason.nvim"] = true,
 		},
-	}) -- nord
+	})
+
+	require("mini.icons").setup()
 
 	require("mini.notify").setup()
 	vim.notify = require("mini.notify").make_notify()
