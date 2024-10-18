@@ -394,8 +394,8 @@ now(function()
 			lua = { "stylua" },
 			go = { "goimports", "gofmt" },
 			sql = { "sqlfluff" },
-			javascript = { { "prettierd", "prettier" } },
-			html = { { "prettierd", "prettier" } },
+			javascript = { "prettierd", "prettier" },
+			html = { "prettierd", "prettier" },
 		},
 	})
 end)
