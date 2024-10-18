@@ -1,12 +1,5 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
--- Use external plugins with `add()`
-now(function()
-	-- Add to current session (install if absent)
-	add("nvim-tree/nvim-web-devicons")
-	require("nvim-web-devicons").setup()
-end)
-
 now(function()
 	add("folke/trouble.nvim")
 	require("trouble").setup()
