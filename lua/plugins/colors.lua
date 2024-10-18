@@ -30,13 +30,6 @@ now(function()
 				visual = false,
 				search = false,
 			},
-			darken = { -- Darken floating windows and sidebar-like windows
-				floats = false,
-				sidebars = {
-					enabled = true,
-					list = {}, -- Apply dark background to specific windows
-				},
-			},
 			modules = { -- List of various plugins and additional options
 				-- ...
 			},
