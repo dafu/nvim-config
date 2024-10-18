@@ -132,10 +132,12 @@ now(function()
 	local hipatterns = require("mini.hipatterns")
 	hipatterns.setup({
 		highlighters = {
-			-- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+			-- Highlight standalone 'FIXME', 'HACK', 'TODO', 'DOING', 'DONE', 'NOTE'
 			fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
 			hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
 			todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
+			doing = { pattern = "%f[%w]()DOING()%f[%W]", group = "MiniHipatternsHack" },
+			done = { pattern = "%f[%w]()DONE()%f[%W]", group = "MiniHipatternsNote" },
 			note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
 
 			-- Highlight hex color strings (`#rrggbb`) using that color
