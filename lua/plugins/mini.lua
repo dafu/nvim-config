@@ -128,6 +128,7 @@ now(function()
 	require("mini.visits").setup()
 	require("mini.diff").setup()
 	require("mini.extra").setup()
+	require("mini.git").setup()
 
 	local hipatterns = require("mini.hipatterns")
 	hipatterns.setup({
