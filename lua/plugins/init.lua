@@ -17,7 +17,9 @@ require("mini.deps").setup({ path = { package = path_package } })
 -- startup and are optional.
 -- local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
+require("plugins.blink")
 require("plugins.lsp")
+require("plugins.copilot")
 require("plugins.mini")
 require("plugins.treesitter")
 require("plugins.oil")
