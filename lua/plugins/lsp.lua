@@ -381,7 +381,7 @@ now(function()
 	require("conform").setup({
 		notify_on_error = true,
 		format_on_save = {
-			timeout_ms = 500,
+			timeout_ms = 2500,
 			lsp_fallback = true,
 		},
 		formatters_by_ft = {
@@ -389,6 +389,7 @@ now(function()
 			go = { "goimports", "gofmt" },
 			sql = { "sqlfluff" },
 			javascript = { "prettierd", "prettier" },
+			svelte = { "prettierd", "prettier" },
 			html = { "prettierd", "prettier" },
 		},
 	})
