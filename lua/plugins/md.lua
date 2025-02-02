@@ -1,10 +1,5 @@
-local MiniDeps = require("mini.deps")
-
-MiniDeps.add({
-	source = "OXY2DEV/markview.nvim",
-
-	depends = {
-		"nvim-treesitter/nvim-treesitter",
-		"nvim-tree/nvim-web-devicons",
-	},
-})
+MiniDeps.now(function()
+	MiniDeps.add({
+		source = "MeanderingProgrammer/render-markdown.nvim",
+	})
+end)
