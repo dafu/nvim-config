@@ -135,7 +135,15 @@ now(function()
 	hipatterns.setup({
 		highlighters = {
 			-- Highlight standalone 'FIXME', 'HACK', 'TODO', 'DOING', 'DONE', 'NOTE'
-			nonascii = { pattern = "[^%z\1-\127]", group = "MiniHipatternsHack" },
+			nonascii = {
+				pattern = function(buf_id)
+					if vim.bo[buf_id].filetype ~= "oil" then
+						return "[^%z\1-\127]"
+					end
+					return nil
+				end,
+				group = "MiniHipatternsHack",
+			},
 			fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
 			hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
 			todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
