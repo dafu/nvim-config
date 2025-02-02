@@ -17,6 +17,8 @@ require("mini.deps").setup({ path = { package = path_package } })
 -- startup and are optional.
 -- local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 
+require("plugins.catppuccin")
+
 require("plugins.lsp")
 require("plugins.mini")
 require("plugins.treesitter")
@@ -24,7 +26,6 @@ require("plugins.oil")
 require("plugins.neotree")
 require("plugins.fzf")
 require("plugins.neogit")
-require("plugins.colors")
-require("plugins.flow")
+-- require("plugins.flow")
 require("plugins.md")
 require("plugins.zen")
