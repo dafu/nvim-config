@@ -135,6 +135,7 @@ now(function()
 	hipatterns.setup({
 		highlighters = {
 			-- Highlight standalone 'FIXME', 'HACK', 'TODO', 'DOING', 'DONE', 'NOTE'
+			nonascii = { pattern = "[^%z\1-\127]", group = "MiniHipatternsHack" },
 			fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
 			hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
 			todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
