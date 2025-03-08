@@ -6,7 +6,7 @@ MiniDeps.now(function()
 			light = "latte",
 			dark = "frappe",
 		},
-		transparent_background = false, -- disables setting the background color.
+		transparent_background = true, -- disables setting the background color.
 		show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
 		term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
 		dim_inactive = {
@@ -20,10 +20,10 @@ MiniDeps.now(function()
 		styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
 			comments = { "italic" }, -- Change the style of comments
 			conditionals = { "italic" },
-			loops = {},
-			functions = {},
+			loops = { "bold" },
+			functions = { "bold" },
 			keywords = {},
-			strings = {},
+			strings = { "italic" },
 			variables = {},
 			numbers = {},
 			booleans = {},
