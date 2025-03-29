@@ -38,7 +38,7 @@ now(function()
 	require("mini.notify").setup()
 	vim.notify = require("mini.notify").make_notify()
 
-	require("mini.tabline").setup()
+	--	require("mini.tabline").setup()
 	--	require("mini.files").setup({
 	--		-- Customization of shown content
 	--		content = {
