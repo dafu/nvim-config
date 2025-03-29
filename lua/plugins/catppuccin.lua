@@ -1,10 +1,10 @@
 MiniDeps.now(function()
 	MiniDeps.add({ source = "catppuccin/nvim", name = "catppuccin" })
 	require("catppuccin").setup({
-		flavour = "auto", -- latte, frappe, macchiato, mocha
+		flavour = "mocha", -- latte, frappe, macchiato, mocha
 		background = { -- :h background
 			light = "latte",
-			dark = "frappe",
+			dark = "mocha",
 		},
 		transparent_background = true, -- disables setting the background color.
 		show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
@@ -36,9 +36,9 @@ MiniDeps.now(function()
 		custom_highlights = {},
 		default_integrations = true,
 		integrations = {
-			cmp = true,
+			cmp = false,
 			gitsigns = true,
-			nvimtree = true,
+			nvimtree = false,
 			treesitter = true,
 			notify = false,
 			mini = {
@@ -50,5 +50,5 @@ MiniDeps.now(function()
 	})
 
 	-- setup must be called before loading
-	vim.cmd.colorscheme("catppuccin-frappe")
+	vim.cmd.colorscheme("catppuccin-mocha")
 end)
