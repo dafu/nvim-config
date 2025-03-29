@@ -1,5 +1,4 @@
 -- https://github.com/echasnovski/mini.nvim
-
 local path_package = vim.fn.stdpath("data") .. "/site/"
 local mini_path = path_package .. "pack/deps/start/mini.nvim"
 if not vim.loop.fs_stat(mini_path) then
@@ -9,7 +8,7 @@ if not vim.loop.fs_stat(mini_path) then
 	vim.cmd("packadd mini.nvim | helptags ALL")
 	vim.cmd('echo "Installed `mini.nvim`" | redraw')
 end
---
+
 -- Set up 'mini.deps' (customize to your liking)
 require("mini.deps").setup({ path = { package = path_package } })
 
@@ -21,8 +20,9 @@ require("mini.deps").setup({ path = { package = path_package } })
 -- require("plugins.theme-github")
 require("plugins.theme-catppuccin")
 
-require("plugins.lsp")
 require("plugins.mini")
+require("plugins.lsp")
+require("plugins.cmp")
 require("plugins.treesitter")
 require("plugins.oil")
 require("plugins.neotree")
