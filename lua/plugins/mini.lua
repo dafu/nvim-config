@@ -4,8 +4,8 @@ now(function()
 	require("mini.basics").setup({
 		options = {
 			basic = true,
-			extra_ui = false,
-			win_borders = "single",
+			extra_ui = true,
+			win_borders = "bold",
 		},
 		mappings = {
 			windows = true,
@@ -15,52 +15,6 @@ now(function()
 			-- relnum_in_visual_mode = true,
 		},
 	})
-	local function mod_hl(hl_name, opts)
-		local is_ok, hl_def = pcall(vim.api.nvim_get_hl_by_name, hl_name, true)
-		if is_ok then
-			for k, v in pairs(opts) do
-				hl_def[k] = v
-			end
-			vim.api.nvim_set_hl(0, hl_name, hl_def)
-		end
-	end
-
-	vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
-		group = vim.api.nvim_create_augroup("Color", {}),
-		pattern = "*",
-		callback = function()
-			mod_hl("Comment", { italic = true })
-			mod_hl("@comment", { italic = true })
-			mod_hl("@string", { italic = true })
-			mod_hl("MiniTablineVisible", { italic = true })
-			mod_hl("MiniTablineCurrent", { italic = true })
-		end,
-	})
-
-	require("mini.tabline").setup()
-	require("mini.hues").setup({
-		-- TODO: have a look at the whole repo: https://github.com/pkazmier/nvim/blob/main/lua/plugins/mini/hues.lua
-		background = "#1e1e2e",
-		foreground = "#cdd6f4",
-
-		accent = "bg",
-		saturation = "lowmedium",
-		n_hues = 8,
-		plugins = {
-			default = true,
-			["echasnovski/mini.nvim"] = true,
-			["ibhagwan/fzf-lua"] = true,
-			["NeogitOrg/neogit"] = true,
-			-- ["folke/trouble.nvim"] = true,
-			-- ["hrsh7th/nvim-cmp"] = true,
-			-- ["lewis6991/gitsigns.nvim"] = true,
-			-- ["williamboman/mason.nvim"] = true,
-		},
-	})
-
-	-- transparent background
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 	require("mini.icons").setup()
 	MiniIcons.mock_nvim_web_devicons()
@@ -118,8 +72,8 @@ now(function()
 	--		},
 	--	})
 
-	-- vim.o.cmdheight = 0
-	-- vim.o.laststatus = 3
+	vim.o.cmdheight = 0
+	vim.o.laststatus = 3
 	require("mini.statusline").setup({
 		-- Whether to set Vim's settings for statusline (make it always shown with
 		-- 'laststatus' set to 2). To use global statusline in Neovim>=0.7.0, set
@@ -180,15 +134,15 @@ now(function()
 		highlighters = {
 			-- Highlight standalone 'FIXME', 'HACK', 'TODO', 'DOING', 'DONE', 'NOTE'
 
-			nonascii = {
-				pattern = function(buf_id)
-					if vim.bo[buf_id].filetype ~= "oil" then
-						return "[^%z\1-\127]"
-					end
-					return nil
-				end,
-				group = "MiniHipatternsHack",
-			},
+			-- nonascii = {
+			-- 	pattern = function(buf_id)
+			-- 		if vim.bo[buf_id].filetype ~= "oil" then
+			-- 			return "[^%z\1-\127]"
+			-- 		end
+			-- 		return nil
+			-- 	end,
+			-- 	group = "MiniHipatternsHack",
+			-- },
 			fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
 			hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
 			todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
