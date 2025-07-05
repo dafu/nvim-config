@@ -16,8 +16,9 @@ MiniDeps.now(function()
 		modules = {},
 		sync_install = true,
 		ignore_install = {},
-		auto_install = true,
-		ensure_installed = { "lua", "vimdoc", "go", "html", "templ", "json" },
+		auto_install = false,
+		ensure_installed = {},
+		-- ensure_installed = { "lua", "vimdoc", "go", "html", "templ", "json" },
 		highlight = {
 			enable = true,
 			-- disable = { "c", "rust" },

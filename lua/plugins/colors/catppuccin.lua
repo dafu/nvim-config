@@ -1,6 +1,7 @@
 MiniDeps.now(function()
 	MiniDeps.add({ source = "catppuccin/nvim", name = "catppuccin" })
 	require("catppuccin").setup({
+		compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
 		flavour = "mocha", -- latte, frappe, macchiato, mocha
 		background = { -- :h background
 			light = "latte",
@@ -37,10 +38,15 @@ MiniDeps.now(function()
 		default_integrations = true,
 		integrations = {
 			cmp = false,
+			mini = {
+				enabled = true,
+				indentscope_color = "", -- catppuccin color (eg. `lavender`) Default: text
+			},
 			gitsigns = true,
 			nvimtree = false,
 			treesitter = true,
 			notify = false,
+			fzf = true,
 			mini = {
 				enabled = true,
 				indentscope_color = "",
