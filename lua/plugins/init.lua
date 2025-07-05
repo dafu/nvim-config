@@ -9,20 +9,15 @@ if not vim.loop.fs_stat(mini_path) then
 	vim.cmd('echo "Installed `mini.nvim`" | redraw')
 end
 
--- Set up 'mini.deps' (customize to your liking)
 require("mini.deps").setup({ path = { package = path_package } })
 
--- Use 'mini.deps'. `now()` and `later()` are helpers for a safe two-stage
--- startup and are optional.
--- local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
-
--- require("plugins.theme-flow")
--- require("plugins.theme-github")
--- require("plugins.theme-catppuccin")
--- require("plugins.theme-bm")
-
 require("plugins.mini")
+
+-- require("plugins.colors.hues")
+require("plugins.colors.catppuccin")
+
 require("plugins.lsp")
+require("plugins.conform")
 require("plugins.cmp")
 require("plugins.treesitter")
 require("plugins.oil")
@@ -32,4 +27,3 @@ require("plugins.neogit")
 require("plugins.md")
 require("plugins.zen")
 require("plugins.misc")
-require("plugins.diagnostics")
