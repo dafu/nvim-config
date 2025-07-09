@@ -1,4 +1,3 @@
---
 MiniDeps.now(function()
 	MiniDeps.add({
 		source = "nvim-treesitter/nvim-treesitter",
