@@ -19,7 +19,7 @@ vim.api.nvim_set_keymap("v", "<BS>", "d", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", "<S-Tab>", "<C-O>", { noremap = true, silent = true })
 
 -- COPYPASTE
-vim.api.nvim_set_keymap("i", "<C-V>", "<C-R>+", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("i", "<C-V>", "<C-R>+", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('', '<C-V>', '"+P', { noremap = true, silent = true})
 vim.api.nvim_set_keymap("", "<C-N>", ":bnext<CR>run", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", "<C-P>", ":bprev<CR>", { noremap = true, silent = true })
@@ -32,18 +32,22 @@ vim.api.nvim_set_keymap(
 	"",
 	"gW",
 	'<cmd>exec "grep! -wF -- "..shellescape(expand("<cWORD>"), 1) <cr>',
-	{ noremap = true, silent = false }
+	{ noremap = true, silent = true }
 )
-
 -- map('', '<silent> <C-L>', ':nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>')
 
 -- LSP
-vim.api.nvim_set_keymap("n", "<Leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<Leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>f", "<cmd>Format<CR>", { noremap = true, silent = true })
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "go to Definition" })
+vim.keymap.set("n", "grn", vim.lsp.buf.rename, { desc = "go to Definition" })
+vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "go to Definition" })
 
 -- PLUGINS
 vim.api.nvim_set_keymap("", [[<leader>ew]], [[:luado MiniTrailspace.trim()<CR>]], { noremap = true, silent = true })
@@ -187,3 +191,43 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- test this as vim-cool replacement
 vim.keymap.set("n", "n", "nzzzv", { desc = "Fwd  search '/' or '?'" })
 vim.keymap.set("n", "N", "Nzzzv", { desc = "Back search '/' or '?'" })
+
+-- mini basics
+vim.keymap.set(
+	"n",
+	"gV",
+	'"`[" . strpart(getregtype(), 0, 1) . "`]"',
+	{ expr = true, replace_keycodes = false, desc = "Visually select changed text" }
+)
+
+-- Window navigation
+vim.keymap.set("n", "<C-H>", "<C-w>h", { desc = "Focus on left window" })
+vim.keymap.set("n", "<C-J>", "<C-w>j", { desc = "Focus on below window" })
+vim.keymap.set("n", "<C-K>", "<C-w>k", { desc = "Focus on above window" })
+vim.keymap.set("n", "<C-L>", "<C-w>l", { desc = "Focus on right window" })
+
+-- Window resize (respecting `v:count`)
+vim.keymap.set(
+	"n",
+	"<C-Left>",
+	'"<Cmd>vertical resize -" . v:count1 . "<CR>"',
+	{ expr = true, replace_keycodes = false, desc = "Decrease window width" }
+)
+vim.keymap.set(
+	"n",
+	"<C-Up>",
+	'"<Cmd>resize -"          . v:count1 . "<CR>"',
+	{ expr = true, replace_keycodes = false, desc = "Decrease window height" }
+)
+vim.keymap.set(
+	"n",
+	"<C-Down>",
+	'"<Cmd>resize +"          . v:count1 . "<CR>"',
+	{ expr = true, replace_keycodes = false, desc = "Increase window height" }
+)
+vim.keymap.set(
+	"n",
+	"<C-Right>",
+	'"<Cmd>vertical resize +" . v:count1 . "<CR>"',
+	{ expr = true, replace_keycodes = false, desc = "Increase window width" }
+)

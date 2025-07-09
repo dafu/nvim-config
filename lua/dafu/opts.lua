@@ -1,7 +1,9 @@
 -- Options
 
 -- LANG
-vim.fn.setenv("LANG", "en_US.UTF-8")
+-- vim.fn.setenv("LANG", "en_US.UTF-8")
+vim.fn.setenv("LANG", "en_US")
+vim.cmd("language en_US")
 
 -- mapleader
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true, remap = false })
@@ -27,8 +29,8 @@ vim.opt.list = true
 vim.opt.listchars = { tab = "  ", trail = "·", nbsp = "␣" }
 
 -- Make line numbers default
-vim.opt.relativenumber = true
--- vim.opt.number = true
+vim.opt.relativenumber = false
+vim.opt.number = false
 
 -- transparent background
 -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
