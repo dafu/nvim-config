@@ -30,6 +30,10 @@ MiniDeps.now(function()
 		require("fzf-lua").files({ cwd = "~" })
 	end, { desc = "Fzf Files ~" })
 
+	vim.keymap.set("n", "<leader>pb", function()
+		require("fzf-lua").buffers()
+	end, { desc = "Fzf Buffers" })
+
 	vim.keymap.set("n", "<leader>pg", function()
 		require("fzf-lua").live_grep({ resume = true })
 	end, { desc = "Fzf Grep Files" })
