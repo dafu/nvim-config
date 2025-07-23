@@ -15,6 +15,7 @@ require("plugins.mini")
 
 -- require("plugins.colors.hues")
 require("plugins.colors.catppuccin")
+-- require("plugins.colors.grey")
 
 require("plugins.lsp")
 require("plugins.conform")

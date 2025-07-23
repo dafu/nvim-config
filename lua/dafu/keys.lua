@@ -1,7 +1,10 @@
+-- TODO: add keys for qucikfix: vim.diagnostic.setqflist() / grep for TODO/HACK/NOTE fields
 -- DISABLE
 -- disable PageDown / PageUp
-vim.api.nvim_set_keymap("", "<PageDown>", "<nop>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("", "<PageUp>", "<nop>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("", "<PageDown>", ":cnext<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("", "<PageUp>", ":cprevious<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("", "<Shift><PageDown>", ":cnewer<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("", "<Shift><PageUp>", ":colder<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('v', '<C-Down>', ':m >+1<CR>gv=gv', { noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('v', '<C-Up>' ,':m <-2<CR>gv=gv', { noremap = true, silent = true})
 --  Disable cmd history - use : & ctrl+f instead
@@ -21,7 +24,7 @@ vim.api.nvim_set_keymap("", "<S-Tab>", "<C-O>", { noremap = true, silent = true 
 -- COPYPASTE
 -- vim.api.nvim_set_keymap("i", "<C-V>", "<C-R>+", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('', '<C-V>', '"+P', { noremap = true, silent = true})
-vim.api.nvim_set_keymap("", "<C-N>", ":bnext<CR>run", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("", "<C-N>", ":bnext<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", "<C-P>", ":bprev<CR>", { noremap = true, silent = true })
 --  paste over selection without poulluting the register
 vim.api.nvim_set_keymap("v", "p", '"_dP', { noremap = true, silent = true })
@@ -43,11 +46,13 @@ vim.api.nvim_set_keymap("n", "<Leader>f", "<cmd>Format<CR>", { noremap = true, s
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>le", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>ce", vim.diagnostic.setqflist, { desc = "Show diagnostic messages in qucikfix" })
 
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "go to Definition" })
 vim.keymap.set("n", "grn", vim.lsp.buf.rename, { desc = "go to Definition" })
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "go to Definition" })
+vim.keymap.set("n", "<leader>s", vim.lsp.buf.signature_help, { desc = "show signature help" })
 
 -- PLUGINS
 vim.api.nvim_set_keymap("", [[<leader>ew]], [[:luado MiniTrailspace.trim()<CR>]], { noremap = true, silent = true })

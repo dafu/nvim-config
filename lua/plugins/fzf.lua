@@ -35,6 +35,10 @@ MiniDeps.now(function()
 	end, { desc = "Fzf Buffers" })
 
 	vim.keymap.set("n", "<leader>pg", function()
+		require("fzf-lua").live_grep({})
+	end, { desc = "Fzf Grep Files" })
+
+	vim.keymap.set("n", "<leader>pG", function()
 		require("fzf-lua").live_grep({ resume = true })
 	end, { desc = "Fzf Grep Files" })
 end)
