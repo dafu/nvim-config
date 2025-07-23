@@ -126,7 +126,8 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap("", "<leader>ev", ":silent !code %<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", [[<leader>tt]], [[:terminal<CR>]], { noremap = true, silent = true })
-vim.api.nvim_set_keymap("", [[<leader>tz]], [[:vsplit term://%:p:h//mksh<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("", [[<leader>ts]], [[:split term://%:p:h//mksh<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("", [[<leader>tv]], [[:vsplit term://%:p:h//mksh<CR>]], { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('', '<leader>ec', ':silent !term<CR>', { noremap = true, silent = true})
 
 -- REGEXES
