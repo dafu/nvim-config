@@ -61,7 +61,11 @@ now(function()
 	require("mini.bufremove").setup()
 	-- require("mini.indentscope").setup()
 	require("mini.visits").setup()
-	require("mini.diff").setup()
+	require("mini.diff").setup({
+		view = {
+			priority = 1, -- fix for not overriding diag symbol
+		},
+	})
 	require("mini.extra").setup()
 	require("mini.git").setup()
 

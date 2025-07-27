@@ -8,5 +8,8 @@ now(function()
 	require("mason").setup()
 
 	add("ray-x/go.nvim")
-	require("go").setup()
+	require("go").setup({
+		diagnostic = false, -- disabled to avoid overriding diagnostic config
+		lsp_inlay_hints = { enable = false }, -- disabled because the plugin enables this globally
+	})
 end)

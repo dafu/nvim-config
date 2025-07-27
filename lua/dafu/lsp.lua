@@ -12,38 +12,38 @@ vim.lsp.config("*", {
 
 vim.lsp.enable({ "lua_ls", "gopls" })
 
-local signs = {
-	ERROR = "",
-	WARN = "",
-	HINT = "󰌵",
-	INFO = "",
+local symbols = {
+	[vim.diagnostic.severity.ERROR] = "󰅚 ",
+	[vim.diagnostic.severity.WARN] = "󰀪 ",
+	[vim.diagnostic.severity.INFO] = "󰋽 ",
+	[vim.diagnostic.severity.HINT] = "󰌶 ",
 }
 
 -- Diagnostics
 vim.diagnostic.config({
-	signs = { priority = 9999 },
-	underline = true,
 	update_in_insert = false, -- false so diags are updated on InsertLeave
-	virtual_text = {
-		prefix = function(diagnostic)
-			return signs[vim.diagnostic.severity[diagnostic.severity]]
-		end,
-		spacing = 2,
-		virt_text_pos = "right_align",
-		current_line = true,
-		severity = { min = "WARN", max = "ERROR" },
-	},
+	-- signs = { text = symbols },
+	virtual_text = false,
 	loclist = {
 		open = true,
 		severity = { min = vim.diagnostic.severity.WARN },
 	},
 	severity_sort = true,
-	float = {
-		focusable = false,
-		style = "minimal",
-		border = "rounded",
-		source = true,
-		header = "",
+	float = { border = "rounded", source = "if_many" },
+	underline = { severity = vim.diagnostic.severity.ERROR },
+	signs = { text = symbols },
+	virtual_text = {
+		source = "if_many",
+		spacing = 4,
+		format = function(diagnostic)
+			local diagnostic_message = {
+				[vim.diagnostic.severity.ERROR] = diagnostic.message,
+				[vim.diagnostic.severity.WARN] = diagnostic.message,
+				[vim.diagnostic.severity.INFO] = diagnostic.message,
+				[vim.diagnostic.severity.HINT] = diagnostic.message,
+			}
+			return diagnostic_message[diagnostic.severity]
+		end,
 	},
 })
 
