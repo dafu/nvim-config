@@ -5,6 +5,9 @@ MiniDeps.later(function()
 		markdown = { "markdownlint" },
 		go = { "golangcilint" },
 		sh = { "shellcheck" },
+		html = { "htmlhint" },
+		gohtml = { "htmlhint" },
+		js = { "eslint_d" },
 	}
 
 	-- Create autocommand which carries out the actual linting
