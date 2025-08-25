@@ -40,7 +40,7 @@ vim.opt.list = true
 vim.opt.listchars = { tab = "  ", trail = "·", nbsp = "␣", extends = "…", precedes = "…" }
 vim.opt.fillchars:append("vert:│,horiz:─,horizdown:┬,horizup:┴,verthoriz:┼,vertleft:┤,vertright:├")
 -- Decrease update time
-vim.o.updatetime = 250
+-- vim.o.updatetime = 250
 -- Decrease mapped sequence wait time
 -- vim.o.timeoutlen = 300
 
