@@ -1,4 +1,5 @@
 -- Defined in init.lua
+
 vim.lsp.config("*", {
 	capabilities = {
 		textDocument = {
@@ -19,32 +20,31 @@ local symbols = {
 	[vim.diagnostic.severity.HINT] = "󰌶 ",
 }
 
+function diagnostic_short_format(diagnostic)
+	return string.format("%s %s", symbols[diagnostic.severity], diagnostic.message)
+end
+
+function diagnostic_format(diagnostic)
+	return string.format(
+		"%s %s (%s): %s",
+		symbols[diagnostic.severity],
+		diagnostic.source,
+		diagnostic.code,
+		diagnostic.message
+	)
+end
 -- Diagnostics
 vim.diagnostic.config({
 	update_in_insert = false, -- false so diags are updated on InsertLeave
-	-- signs = { text = symbols },
-	virtual_text = false,
-	loclist = {
-		open = true,
-		severity = { min = vim.diagnostic.severity.WARN },
-	},
 	severity_sort = true,
 	float = { border = "rounded", source = "if_many" },
 	underline = { severity = vim.diagnostic.severity.ERROR },
 	signs = { text = symbols },
-	virtual_text = {
-		source = "if_many",
-		spacing = 4,
-		format = function(diagnostic)
-			local diagnostic_message = {
-				[vim.diagnostic.severity.ERROR] = diagnostic.message,
-				[vim.diagnostic.severity.WARN] = diagnostic.message,
-				[vim.diagnostic.severity.INFO] = diagnostic.message,
-				[vim.diagnostic.severity.HINT] = diagnostic.message,
-			}
-			return diagnostic_message[diagnostic.severity]
-		end,
+	virtual_lines = {
+		current_line = true,
+		format = diagnostic_format,
 	},
+	virtual_text = false,
 })
 
 vim.keymap.set("n", "gK", function()
