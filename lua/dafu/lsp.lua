@@ -40,11 +40,8 @@ vim.diagnostic.config({
 	float = { border = "rounded", source = "if_many" },
 	underline = { severity = vim.diagnostic.severity.ERROR },
 	signs = { text = symbols },
-	virtual_lines = {
-		current_line = true,
-		format = diagnostic_format,
-	},
 	virtual_text = false,
+	virtual_lines = false,
 })
 
 vim.keymap.set("n", "gK", function()
