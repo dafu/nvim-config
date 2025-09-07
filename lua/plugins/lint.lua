@@ -4,6 +4,7 @@ MiniDeps.later(function()
 	lint.linters_by_ft = {
 		markdown = { "markdownlint" },
 		go = { "golangcilint" },
+		-- css = { "stylelint" },
 		sh = { "shellcheck" },
 		html = { "htmlhint" },
 		gohtml = { "htmlhint" },
