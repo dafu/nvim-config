@@ -20,20 +20,19 @@ vim.api.nvim_create_autocmd({ "VimEnter", "ColorScheme" }, {
 	end,
 })
 
+-- vim.o.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175]]
+
+vim.o.guicursor = [[n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkon0-Cursor/lCursor,sm:block-blinkon0]]
 vim.o.background = "light"
--- vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20,t:block-blinkon500-blinkoff500-Cursor/lCursor"
--- vim.o.guicursor = [[ guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
--- 		  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
--- 		  \,sm:block-blinkwait175-blinkoff150-blinkon175 ]]
 
 require("mini.hues").setup({
 	-- TODO: have a look at the whole repo: https://github.com/pkazmier/nvim/blob/main/lua/plugins/mini/hues.lua
-	foreground = "#dce0e8",
-	background = "#181825",
+	background = "#eff1f5",
+	foreground = "#1e1e2e",
 
 	accent = "fg",
-	saturation = "medium",
-	n_hues = 6,
+	saturation = "mediumhigh",
+	n_hues = 8,
 	plugins = {
 		default = true,
 		["echasnovski/mini.nvim"] = true,
@@ -43,5 +42,6 @@ require("mini.hues").setup({
 })
 
 -- transparent background
+-- vim.opt.guicursor = "n-v-c:block-Cursor/lCursor"
 -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
