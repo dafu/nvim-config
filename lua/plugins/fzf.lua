@@ -16,6 +16,9 @@ MiniDeps.now(function()
 			glob_separator = "%s%-%-", -- query separator pattern (lua): ' --'
 		},
 	})
+
+	require("fzf-lua").register_ui_select()
+
 	-- require("fzf-lua").setup({})
 	-- vim.keymap.set("n", "<c-P>", function() require('fzf-lua').files({ ... }) end, { desc = "Fzf Files" })
 	vim.keymap.set("n", "<leader>po", function()
