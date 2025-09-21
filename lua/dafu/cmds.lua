@@ -36,11 +36,6 @@ vim.api.nvim_create_autocmd("CursorMoved", {
 })
 
 vim.api.nvim_create_autocmd("DiagnosticChanged", {
-	-- 	augroup locallist
-	--     autocmd!
-	--     " Populate locallist with lsp diagnostics automatically
-	--     autocmd User LspDiagnosticsChanged :lua vim.lsp.diagnostic.set_loclist({open_loclist = false})
-	-- augroup END
 	group = vim.api.nvim_create_augroup("qfixlsp", { clear = true }),
 	callback = function()
 		vim.diagnostic.setqflist({ open = false })

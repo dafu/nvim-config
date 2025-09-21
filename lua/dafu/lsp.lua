@@ -11,7 +11,7 @@ vim.lsp.config("*", {
 	root_markers = { ".git" },
 })
 
-vim.lsp.enable({ "lua_ls", "gopls", "css-lsp" })
+vim.lsp.enable({ "lua_ls", "gopls", "css-lsp", "html-lsp" })
 
 local symbols = {
 	[vim.diagnostic.severity.ERROR] = "󰅚 ",

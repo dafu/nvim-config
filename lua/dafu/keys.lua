@@ -1,10 +1,14 @@
 -- TODO: add keys for qucikfix: vim.diagnostic.setqflist() / grep for TODO/HACK/NOTE fields
+vim.api.nvim_set_keymap(
+	"",
+	"<leader>uu",
+	'<cmd>exec "silent grep! -wF -- TODO" | copen <cr>',
+	{ noremap = true, silent = true }
+)
 -- DISABLE
 -- disable PageDown / PageUp
-vim.api.nvim_set_keymap("", "<PageDown>", ":cnext<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("", "<PageUp>", ":cprevious<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("", "<Shift><PageDown>", ":cnewer<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("", "<Shift><PageUp>", ":colder<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("", "<leader>cn", ":cnext<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("", "<leader>cp", ":cprevious<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('v', '<C-Down>', ':m >+1<CR>gv=gv', { noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('v', '<C-Up>' ,':m <-2<CR>gv=gv', { noremap = true, silent = true})
 --  Disable cmd history - use : & ctrl+f instead
@@ -34,7 +38,7 @@ vim.api.nvim_set_keymap("v", "p", '"_dP', { noremap = true, silent = true })
 vim.api.nvim_set_keymap(
 	"",
 	"gW",
-	'<cmd>exec "grep! -wF -- "..shellescape(expand("<cWORD>"), 1) <cr>',
+	'<cmd>exec "silent grep! -wF -- "..shellescape(expand("<cWORD>"), 1) <cr>',
 	{ noremap = true, silent = true }
 )
 -- map('', '<silent> <C-L>', ':nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>')

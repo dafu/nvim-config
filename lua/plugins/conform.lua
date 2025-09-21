@@ -14,6 +14,7 @@ MiniDeps.now(function()
 			javascript = { "prettierd", "prettier" },
 			svelte = { "prettierd", "prettier" },
 			html = { "prettierd", "prettier" },
+			gohtmltmpl = { "prettierd", "prettier" },
 			["*"] = { "injected" }, -- enables injected-lang formatting for all filetypes
 		},
 	})

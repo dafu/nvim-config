@@ -6,8 +6,9 @@ MiniDeps.later(function()
 		go = { "golangcilint" },
 		-- css = { "stylelint" },
 		sh = { "shellcheck" },
-		html = { "htmlhint" },
-		gohtml = { "htmlhint" },
+		html = { "eslint_d" },
+		gohtml = { "eslint_d" },
+		gohtmltmpl = { "htmlhint" },
 		js = { "eslint_d" },
 	}
 

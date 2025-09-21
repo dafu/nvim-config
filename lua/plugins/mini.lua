@@ -7,9 +7,6 @@ now(function()
 	require("mini.notify").setup()
 	vim.notify = require("mini.notify").make_notify()
 
-	vim.o.cmdheight = 0
-	vim.o.laststatus = 3
-
 	require("mini.statusline").setup({
 		-- Whether to set Vim's settings for statusline (make it always shown with
 		-- 'laststatus' set to 2). To use global statusline in Neovim>=0.7.0, set
@@ -61,13 +58,13 @@ now(function()
 	require("mini.bufremove").setup()
 	-- require("mini.indentscope").setup()
 	require("mini.visits").setup()
-	require("mini.diff").setup({
-		view = {
-			priority = 1, -- fix for not overriding diag symbol
-		},
-	})
+
+	-- priortiy fixes overriding diag symbol
+	require("mini.diff").setup({ view = { priority = 1 } })
+
 	require("mini.extra").setup()
 	require("mini.git").setup()
+	require("mini.sessions").setup()
 
 	local hipatterns = require("mini.hipatterns")
 	hipatterns.setup({
