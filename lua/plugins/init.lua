@@ -13,9 +13,7 @@ require("mini.deps").setup({ path = { package = path_package } })
 
 require("plugins.mini")
 
--- require("plugins.colors.catppuccin")
--- require("plugins.colors.xeno")
--- require("plugins.colors.grey")
+-- require("plugins.colors")
 
 require("plugins.lsp")
 require("plugins.conform")
@@ -27,4 +25,3 @@ require("plugins.md")
 require("plugins.zen")
 require("plugins.misc")
 require("plugins.lint")
-require("plugins.colors.hues-light")
