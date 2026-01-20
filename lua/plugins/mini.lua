@@ -7,6 +7,9 @@ now(function()
 	require("mini.notify").setup()
 	vim.notify = require("mini.notify").make_notify()
 
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
+	vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
 	require("mini.statusline").setup({
 		-- Whether to set Vim's settings for statusline (make it always shown with
 		-- 'laststatus' set to 2). To use global statusline in Neovim>=0.7.0, set
@@ -18,11 +21,11 @@ now(function()
 				local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
 
 				return MiniStatusline.combine_groups({
-					{ hl = "MiniStatuslineFilename", strings = { filename } },
+					{ hl = "LineNr", strings = { filename } },
 					"%<", -- Mark general truncate point
 					"%=", -- End left alignment
-					{ hl = "MiniStatuslineFilename", strings = { diagnostics } }, -- diagnostics } },
-					-- { hl = "MiniStatuslineFilename", strings = { fileinfo } },
+					{ hl = "LineNr", strings = { diagnostics } }, -- diagnostics } },
+					-- { hl = "LineNr", strings = { fileinfo } },
 				})
 			end,
 			active = function()
@@ -30,21 +33,23 @@ now(function()
 				local filename = MiniStatusline.section_filename({ trunc_width = 2000 })
 				local git = MiniStatusline.section_git({ trunc_width = 75 })
 				local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
+				local lsp = MiniStatusline.section_lsp({ trunc_width = 75 })
 				local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 2000 })
-				-- local location = MiniStatusline.section_location({ trunc_width = 2000 })
+				local location = MiniStatusline.section_location({ trunc_width = 75 })
 				local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
 
 				return MiniStatusline.combine_groups({
-					{ hl = "MiniStatuslineFilename", strings = { mode } },
+					{ hl = "WarningMsg", strings = { mode } },
 					-- { hl = mode_hl, strings = { mode } },
-					{ hl = "MiniStatuslineFilename", strings = { filename } },
+					{ hl = "LineNr", strings = { filename } },
 					"%<", -- Mark general truncate point
 					"%=", -- End left alignment
-					{ hl = "MiniStatuslineFilename", strings = { git } }, -- diagnostics } },
-					{ hl = "MiniStatuslineFilename", strings = { diagnostics } }, -- diagnostics } },
-					{ hl = "MiniStatuslineFilename", strings = { fileinfo } },
-					{ hl = "MiniStatuslineFilename", strings = { search } }, -- location
-					-- { hl = "MiniStatuslineFilename", strings = { location } }, -- location
+					{ hl = "WarningMsg", strings = { git } }, -- diagnostics } },
+					{ hl = "DiagnosticsOk", strings = { diagnostics } }, -- diagnostics } },
+					{ hl = "DiagnosticsOk", strings = { lsp } }, -- diagnostics } },
+					{ hl = "LineNr", strings = { fileinfo } },
+					{ hl = "LineNr", strings = { search } }, -- location
+					{ hl = "LineNr", strings = { location } }, -- location
 				})
 			end,
 		},
