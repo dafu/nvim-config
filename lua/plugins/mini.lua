@@ -30,8 +30,9 @@ now(function()
 			end,
 			active = function()
 				local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 2000 })
-				local filename = MiniStatusline.section_filename({ trunc_width = 2000 })
+				local filename = MiniStatusline.section_filename({ trunc_width = 50 })
 				local git = MiniStatusline.section_git({ trunc_width = 75 })
+				local diff = MiniStatusline.section_diff({ trunc_width = 75 })
 				local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
 				local lsp = MiniStatusline.section_lsp({ trunc_width = 75 })
 				local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 2000 })
@@ -44,12 +45,9 @@ now(function()
 					{ hl = "LineNr", strings = { filename } },
 					"%<", -- Mark general truncate point
 					"%=", -- End left alignment
-					{ hl = "WarningMsg", strings = { git } }, -- diagnostics } },
-					{ hl = "DiagnosticsOk", strings = { diagnostics } }, -- diagnostics } },
-					{ hl = "DiagnosticsOk", strings = { lsp } }, -- diagnostics } },
-					{ hl = "LineNr", strings = { fileinfo } },
-					{ hl = "LineNr", strings = { search } }, -- location
-					{ hl = "LineNr", strings = { location } }, -- location
+					{ hl = "WarningMsg", strings = { git } },
+					{ hl = "DiagnosticsOk", strings = { diagnostics, lsp } },
+					{ hl = "LineNr", strings = { diff, fileinfo, search, location } },
 				})
 			end,
 		},

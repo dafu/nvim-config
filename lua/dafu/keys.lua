@@ -60,6 +60,7 @@ vim.keymap.set("n", "<leader>s", vim.lsp.buf.signature_help, { desc = "show sign
 
 -- PLUGINS
 vim.api.nvim_set_keymap("", [[<leader>ew]], [[:luado MiniTrailspace.trim()<CR>]], { noremap = true, silent = true })
+vim.api.nvim_set_keymap("", [[<leader>hh]], [[:luado MiniDiff.toggle_overlay()<CR>]], { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('', '<leader>gp', ':Gpull', { noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('', '<leader>gh', ':GitGutterPreviewHunk<CR>', { noremap = true, silent = true})
 -- vim.api.nvim_set_keymap('', '<leader>md', ':MarkdownPreview<CR>', { noremap = true, silent = true})
