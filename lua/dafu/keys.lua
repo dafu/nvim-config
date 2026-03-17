@@ -1,7 +1,7 @@
 -- TODO: add keys for qucikfix: vim.diagnostic.setqflist() / grep for TODO/HACK/NOTE fields
 vim.api.nvim_set_keymap(
 	"",
-	"<leader>uu",
+	"<leader>ct",
 	'<cmd>exec "silent grep! -wF -- TODO" | copen <cr>',
 	{ noremap = true, silent = true }
 )
@@ -45,7 +45,7 @@ vim.api.nvim_set_keymap(
 
 -- LSP
 -- vim.api.nvim_set_keymap("n", "<Leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<Leader>f", "<cmd>Format<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<Leader>wf", "<cmd>Format<CR>", { noremap = true, silent = true })
 -- Diagnostic keymaps
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })

@@ -17,7 +17,7 @@ now(function()
 		set_vim_settings = true,
 		content = {
 			inactive = function()
-				local filename = MiniStatusline.section_filename({ trunc_width = 2000 })
+				local filename = MiniStatusline.section_filename({ trunc_width = 30 })
 				local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
 
 				return MiniStatusline.combine_groups({
@@ -30,7 +30,7 @@ now(function()
 			end,
 			active = function()
 				local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 2000 })
-				local filename = MiniStatusline.section_filename({ trunc_width = 50 })
+				local filename = MiniStatusline.section_filename({ trunc_width = 30 })
 				local git = MiniStatusline.section_git({ trunc_width = 75 })
 				local diff = MiniStatusline.section_diff({ trunc_width = 75 })
 				local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
@@ -57,15 +57,107 @@ now(function()
 	require("mini.align").setup()
 	require("mini.comment").setup()
 
-	require("mini.pick").setup()
-	vim.keymap.set("n", "<leader>po", "<Cmd>Pick oldfiles<CR>", { desc = "Pick Oldfiles" })
-	vim.keymap.set("n", "<leader>pp", "<Cmd>Pick files<CR>", { desc = "Pick files" })
-	vim.keymap.set("n", "<leader>p:", '<Cmd>Pick history scope=":"<CR>', { desc = "Pick history" })
-	-- vim.keymap.set("n", "<leader>pf", function()
-	vim.keymap.set("n", "<leader>pb", "<Cmd>Pick buffers<CR>", { desc = "Pick buffers" })
-	vim.keymap.set("n", "<leader>pg", "<Cmd>Pick grep_live<CR>", { desc = "Pick grep_live" })
-	vim.keymap.set("n", "<leader>pf", "<Cmd>Pick buf_lines<CR>", { desc = "Pick buflines" })
-	vim.keymap.set("n", "<leader>pd", '<Cmd>Pick visit_paths cwd=""<CR>', { desc = "Pick visit_paths" })
+	require("mini.pick").setup(
+  {
+    -- Delays (in ms; should be at least 1)
+    delay = {
+      -- Delay between forcing asynchronous behavior
+      async = 10,
+
+      -- Delay between computation start and visual feedback about it
+      busy = 50,
+    },
+
+    -- Keys for performing actions. See `:h MiniPick-actions`.
+    mappings = {
+      caret_left  = '<Left>',
+      caret_right = '<Right>',
+
+      choose            = '<CR>',
+      choose_in_split   = '<C-s>',
+      choose_in_tabpage = '<C-t>',
+      choose_in_vsplit  = '<C-v>',
+      choose_marked     = '<M-CR>',
+
+      delete_char       = '<BS>',
+      delete_char_right = '<Del>',
+      delete_left       = '<C-u>',
+      delete_word       = '<C-w>',
+
+      mark     = '<C-x>',
+      mark_all = '<C-a>',
+
+      move_down  = '<C-n>',
+      move_start = '<C-g>',
+      move_up    = '<C-p>',
+
+      paste = '<C-r>',
+
+      refine        = '<C-Space>',
+      refine_marked = '<M-Space>',
+
+      scroll_down  = '<C-f>',
+      scroll_left  = '<C-h>',
+      scroll_right = '<C-l>',
+      scroll_up    = '<C-b>',
+
+      stop = '<Esc>',
+
+      toggle_info    = '<S-Tab>',
+      toggle_preview = '<Tab>',
+    },
+
+    -- General options
+    options = {
+      -- Whether to show content from bottom to top
+      content_from_bottom = false,
+
+      -- Whether to cache matches (more speed and memory on repeated prompts)
+      use_cache = false,
+    },
+
+    -- Source definition. See `:h MiniPick-source`.
+    source = {
+      items = nil,
+      name  = nil,
+      cwd   = nil,
+
+      match   = nil,
+      show    = nil,
+      preview = nil,
+
+      choose        = nil,
+      choose_marked = nil,
+    },
+
+    -- Window related options
+    window = {
+      -- Float window config (table or callable returning it)
+        -- relative = 'cursor', anchor = 'NW',
+        -- row = 0, col = 0, width = 40, height = 20,
+      config = {
+        anchor = 'NW',
+        row = 0, col = 0, width = 70, height = 30,
+        },
+
+      -- String to use as caret in prompt
+      prompt_caret = '>',
+
+      -- String to use as prefix in prompt
+      prompt_prefix = '',
+    },
+  }
+
+  )
+
+	vim.keymap.set("n", "<leader>p", "<nop>")
+	vim.keymap.set("n", "<leader>fd", "<Cmd>Pick oldfiles<CR>", { desc = "Pick Oldfiles" })
+	vim.keymap.set("n", "<leader>ff", "<Cmd>Pick files<CR>", { desc = "Pick files" })
+	vim.keymap.set("n", "<leader>f:", '<Cmd>Pick history scope=":"<CR>', { desc = "Pick history" })
+	vim.keymap.set("n", "<leader>fb", "<Cmd>Pick buffers<CR>", { desc = "Pick buffers" })
+	vim.keymap.set("n", "<leader>fg", "<Cmd>Pick grep_live<CR>", { desc = "Pick grep_live" })
+	vim.keymap.set("n", "<leader>fl", "<Cmd>Pick buf_lines<CR>", { desc = "Pick buflines" })
+	vim.keymap.set("n", "<leader>fs", '<Cmd>Pick visit_paths cwd=""<CR>', { desc = "Pick visit_paths" })
 
 	require("mini.surround").setup()
 	require("mini.bufremove").setup()
@@ -109,7 +201,6 @@ now(function()
 			}),
 		},
 	})
-end)
 
 -- 	require("mini.basics").setup({
 -- 		options = {
@@ -126,52 +217,46 @@ end)
 -- 		},
 -- 	})
 
---	require("mini.files").setup({
---		-- Customization of shown content
---		content = {
---			-- Predicate for which file system entries to show
---			filter = nil,
---			-- What prefix to show to the left of file system entry
---			prefix = nil,
---			-- In which order to show file system entries
---			sort = nil,
---		},
---
---		-- Module mappings created only inside explorer.
---		-- Use `''` (empty string) to not create one.
---		mappings = {
---			close = "q",
---			go_in = "l",
---			go_in_plus = "L",
---			go_out = "h",
---			go_out_plus = "H",
---			reset = "<BS>",
---			reveal_cwd = "@",
---			show_help = "g?",
---			synchronize = "=",
---			trim_left = "<",
---			trim_right = ">",
---		},
---
---		-- General options
---		options = {
---			-- Whether to delete permanently or move into module-specific trash
---			permanent_delete = true,
---			-- Whether to use for editing directories
---			use_as_default_explorer = true,
---		},
---
---		-- Customization of explorer windows
---		windows = {
---			-- Maximum number of windows to show side by side
---			max_number = math.huge,
---			-- Whether to show preview of file/directory under cursor
---			preview = true,
---			-- Width of focused window
---			width_focus = 50,
---			-- Width of non-focused window
---			width_nofocus = 15,
---			-- Width of preview window
---			width_preview = 25,
---		},
---	})
+	require("mini.files").setup({
+		content = {
+			filter = nil,
+			prefix = nil,
+			sort = nil,
+		},
+
+		mappings = {
+			close = "<ESC>",
+			go_in = "l",
+			go_in_plus = "<CR>",
+			go_out = "h",
+			go_out_plus = "-",
+			reset = "_",
+			reveal_cwd = "@",
+			show_help = "g?",
+			synchronize = "=",
+			trim_left = "<",
+			trim_right = ">",
+		},
+
+		options = {
+			permanent_delete = true,
+			use_as_default_explorer = true,
+		},
+
+		windows = {
+			max_number = 2, -- math.huge,
+			preview = true,
+			width_focus = 30,
+			width_nofocus = 30,
+			width_preview = 30,
+		},
+	})
+
+	vim.keymap.set("n", "-", function()
+		local buf_name = vim.api.nvim_buf_get_name(0)
+		local path = vim.fn.filereadable(buf_name) == 1 and buf_name or vim.fn.getcwd()
+		MiniFiles.open(path)
+		MiniFiles.reveal_cwd()
+	end, { desc = "Open Mini Files" })
+
+end)
