@@ -17,7 +17,7 @@ now(function()
 		set_vim_settings = true,
 		content = {
 			inactive = function()
-				local filename = MiniStatusline.section_filename({ trunc_width = 30 })
+				local filename = MiniStatusline.section_filename({ trunc_width = 2000 })
 				local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
 
 				return MiniStatusline.combine_groups({
@@ -30,7 +30,7 @@ now(function()
 			end,
 			active = function()
 				local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 2000 })
-				local filename = MiniStatusline.section_filename({ trunc_width = 30 })
+				local filename = MiniStatusline.section_filename({ trunc_width = 2000 })
 				local git = MiniStatusline.section_git({ trunc_width = 75 })
 				local diff = MiniStatusline.section_diff({ trunc_width = 75 })
 				local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
@@ -42,12 +42,12 @@ now(function()
 				return MiniStatusline.combine_groups({
 					{ hl = "WarningMsg", strings = { mode } },
 					-- { hl = mode_hl, strings = { mode } },
-					{ hl = "LineNr", strings = { filename } },
 					"%<", -- Mark general truncate point
+					{ hl = "LineNr", strings = { filename } },
 					"%=", -- End left alignment
 					{ hl = "WarningMsg", strings = { git } },
 					{ hl = "DiagnosticsOk", strings = { diagnostics, lsp } },
-					{ hl = "LineNr", strings = { diff, fileinfo, search, location } },
+					{ hl = "LineNr", strings = { diff, search , fileinfo } },
 				})
 			end,
 		},
@@ -151,6 +151,7 @@ now(function()
   )
 
 	vim.keymap.set("n", "<leader>p", "<nop>")
+	vim.keymap.set("n", "<leader>pp", "<nop>")
 	vim.keymap.set("n", "<leader>fd", "<Cmd>Pick oldfiles<CR>", { desc = "Pick Oldfiles" })
 	vim.keymap.set("n", "<leader>ff", "<Cmd>Pick files<CR>", { desc = "Pick files" })
 	vim.keymap.set("n", "<leader>f:", '<Cmd>Pick history scope=":"<CR>', { desc = "Pick history" })
