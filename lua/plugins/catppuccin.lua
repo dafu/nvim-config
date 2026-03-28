@@ -47,10 +47,6 @@ MiniDeps.now(function()
 			treesitter = true,
 			notify = false,
 			fzf = true,
-			mini = {
-				enabled = true,
-				indentscope_color = "",
-			},
 			-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 		},
 	})

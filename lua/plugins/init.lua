@@ -13,7 +13,7 @@ require("mini.deps").setup({ path = { package = path_package } })
 
 require("plugins.mini")
 
--- require("plugins.colors")
+require("plugins.catppuccin")
 
 require("plugins.lsp")
 require("plugins.conform")
