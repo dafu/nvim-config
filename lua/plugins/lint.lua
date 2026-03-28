@@ -3,13 +3,14 @@ MiniDeps.later(function()
 	local lint = require("lint")
 	lint.linters_by_ft = {
 		markdown = { "markdownlint" },
-		go = { "golangcilint" },
+		-- go = { "golangcilint" },
 		-- css = { "stylelint" },
 		sh = { "shellcheck" },
 		html = { "eslint_d" },
 		gohtml = { "eslint_d" },
 		gohtmltmpl = { "htmlhint" },
 		js = { "eslint_d" },
+		sql = { "sqruff" },
 	}
 
 	-- Create autocommand which carries out the actual linting

@@ -11,13 +11,17 @@ MiniDeps.now(function()
 			lua = { "stylua" },
 			go = { "goimports", "gofmt", "gofumpt" },
 			-- sql = { "sqlfluff" },
-			javascript = { "prettierd", "prettier" },
+			javascript = { "oxfmt" },
 			svelte = { "prettierd", "prettier" },
-			html = { "prettierd", "prettier" },
-			gohtmltmpl = { "prettierd", "prettier" },
+			sql = { "sqruff" },
+			-- html = { "oxfmt" },
+			-- gohtmltmpl = { "oxfmt" },
 			["*"] = { "injected" }, -- enables injected-lang formatting for all filetypes
 		},
 	})
+	require("conform").formatters.sqruff = {
+		append_args = { "--config", "$HOME/sqruff.config" },
+	}
 
 	-- Format Command
 	vim.api.nvim_create_user_command("Format", function(args)
