@@ -260,4 +260,8 @@ now(function()
 		MiniFiles.reveal_cwd()
 	end, { desc = "Open Mini Files" })
 
+	-- highlight cursorword
+	require("mini.cursorword").setup()
+	vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", {}) -- no hl for current word
+	-- vim.api.nvim_set_hl(0, "MiniCursorword", { link = "IncSearch" }) -- link to search
 end)
