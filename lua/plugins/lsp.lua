@@ -4,6 +4,8 @@ now(function()
 	-- add("folke/trouble.nvim")
 	-- require("trouble").setup()
 
+  add({ source = 'https://github.com/neovim/nvim-lspconfig' })
+
 	add({ source = "mason-org/mason.nvim" })
 	require("mason").setup()
 
