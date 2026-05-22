@@ -9,25 +9,39 @@ MiniDeps.now(function()
 			end,
 		},
 	})
-	--require("nvim-treesitter.configs").setup({
-	--modules = {},
-	--sync_install = true,
-	--ignore_install = {},
-	--auto_install = false,
-	--ensure_installed = {},
-	---- ensure_installed = { "lua", "vimdoc", "go", "html", "templ", "json" },
-	--highlight = {
-	--enable = true,
-	---- disable = { "c", "rust" },
-	---- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files
-	--disable = function(lang, buf)
-	--local max_filesize = 100 * 1024 -- 100 KB
-	--local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-	--if ok and stats and stats.size > max_filesize then
-	--return true
-	--end
-	--end,
-	--additional_vim_regex_highlighting = false,
-	--},
-	--})
+
+	--	local ts_parsers = { "lua", "vim", "vimdoc", "c", "query", "go", "gotmpl", "json", "html", "css", "yaml" }
+	--
+	--	local ts = vim.treesitter
+	--
+	--	local ts_enable = function(buffer, lang)
+	--		local ok, hl = pcall(ts.query.get, lang, "highlights")
+	--		if ok and hl then
+	--			ts.start(buffer, lang)
+	--		end
+	--	end
+	--
+	--	vim.api.nvim_create_autocmd("FileType", {
+	--		desc = "enable treesitter",
+	--		callback = function(event)
+	--			local ft = event.match
+	--			local available = ts_filetypes[ft]
+	--			if available == nil then
+	--				return
+	--			end
+	--
+	--			local lang = ts.language.get_lang(ft)
+	--			local buffer = event.buf
+	--
+	--			if available then
+	--				ts_enable(buffer, lang)
+	--				return
+	--			end
+	--
+	--			require("nvim-treesitter").install(lang):await(function()
+	--				ts_filetypes[ft] = true
+	--				ts_enable(buffer, lang)
+	--			end)
+	--		end,
+	--	})
 end)
