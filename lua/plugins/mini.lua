@@ -24,7 +24,7 @@ now(function()
 					{ hl = "LineNr", strings = { filename } },
 					"%<", -- Mark general truncate point
 					"%=", -- End left alignment
-					{ hl = "LineNr", strings = { diagnostics } }, -- diagnostics } },
+					-- { hl = "LineNr", strings = { diagnostics } }, -- diagnostics } },
 					-- { hl = "LineNr", strings = { fileinfo } },
 				})
 			end,
@@ -202,21 +202,6 @@ now(function()
 			}),
 		},
 	})
-
--- 	require("mini.basics").setup({
--- 		options = {
--- 			basic = true,
--- 			extra_ui = true,
--- 			win_borders = "bold",
--- 		},
--- 		mappings = {
--- 			windows = true,
--- 		},
--- 		autocommands = {
--- 			basic = true,
--- 			-- relnum_in_visual_mode = true,
--- 		},
--- 	})
 
 	require("mini.files").setup({
 		content = {
