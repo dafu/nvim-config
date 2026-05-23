@@ -1,12 +1,12 @@
--- TODO: add keys for qucikfix: vim.diagnostic.setqflist() / grep for TODO/HACK/NOTE fields
-vim.api.nvim_set_keymap(
-	"",
-	"<leader>ct",
-	'<cmd>exec "silent grep! -wF -- TODO" | copen <cr>',
-	{ noremap = true, silent = true }
-)
--- DISABLE
--- disable PageDown / PageUp
+-- stylua: ignore start
+local nmap = function(lhs, rhs, desc) vim.keymap.set("n", lhs, rhs, { desc = desc }) end
+local nmap_leader = function(suffix, rhs, desc) vim.keymap.set("n", "<Leader>" .. suffix, rhs, { desc = desc }) end
+local xmap_leader = function(suffix, rhs, desc) vim.keymap.set("x", "<Leader>" .. suffix, rhs, { desc = desc }) end
+
+-- QUICKFIX <leader>c
+vim.api.nvim_set_keymap( "", "<leader>ct", '<cmd>exec "silent grep! -wF -- TODO" | copen <cr>', { noremap = true, silent = true })
+
+
 vim.api.nvim_set_keymap("", "<leader>cn", ":cnext<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("", "<leader>cp", ":cprevious<CR>", { noremap = true, silent = true })
 -- vim.api.nvim_set_keymap('v', '<C-Down>', ':m >+1<CR>gv=gv', { noremap = true, silent = true})
@@ -242,3 +242,5 @@ vim.keymap.set(
 	'"<Cmd>vertical resize +" . v:count1 . "<CR>"',
 	{ expr = true, replace_keycodes = false, desc = "Increase window width" }
 )
+--
+-- TODO: add keys for qucikfix: vim.diagnostic.setqflist() / grep for TODO/HACK/NOTE fields

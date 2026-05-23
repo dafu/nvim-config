@@ -31,7 +31,7 @@ Config.now(function()
 			properties = {},
 			types = {},
 			operators = {},
-			-- miscs = {}, -- Uncomment to turn off hard-coded styles
+			miscs = {}, -- Uncomment to turn off hard-coded styles
 		},
 		color_overrides = {},
 		custom_highlights = {},
