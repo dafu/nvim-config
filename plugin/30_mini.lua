@@ -28,22 +28,6 @@ now_if_args(function()
 	vim.lsp.config("*", { capabilities = MiniCompletion.get_lsp_capabilities() })
 end)
 
-now_if_args(function()
-	-- Enable directory/file preview
-	require("mini.files").setup({ windows = { preview = true } })
-
-	-- Add common bookmarks for every explorer. Example usage inside explorer:
-	-- - `'c` to navigate into your config directory
-	-- - `g?` to see available bookmarks
-	local add_marks = function()
-		MiniFiles.set_bookmark("c", vim.fn.stdpath("config"), { desc = "Config" })
-		local vimpack_plugins = vim.fn.stdpath("data") .. "/site/pack/core/opt"
-		MiniFiles.set_bookmark("p", vimpack_plugins, { desc = "Plugins" })
-		MiniFiles.set_bookmark("w", vim.fn.getcwd, { desc = "Working directory" })
-	end
-	Config.new_autocmd("User", "MiniFilesExplorerOpen", add_marks, "Add bookmarks")
-end)
-
 -- Miscellaneous small but useful functions. Example usage:
 -- - `<Leader>oz` - toggle between "zoomed" and regular view of current buffer
 -- - `<Leader>or` - resize window to its "editable width"
@@ -233,170 +217,11 @@ later(function()
 	require("mini.cmdline").setup()
 end)
 
--- Tweak and save any color scheme. Contains utility functions to work with
--- color spaces and color schemes. Example usage:
--- - `:Colorscheme default` - switch with animation to the default color scheme
---
--- See also:
--- - `:h MiniColors.interactive()` - interactively tweak color scheme
--- - `:h MiniColors-recipes` - common recipes to use during interactive tweaking
--- - `:h MiniColors.convert()` - convert between color spaces
--- - `:h MiniColors-color-spaces` - list of supported color sapces
---
--- It is not enabled by default because it is not really needed on a daily basis.
--- Uncomment next line (use `gcc`) to enable.
--- later(function() require('mini.colors').setup() end)
-
--- Comment lines. Provides functionality to work with commented lines.
--- Uses `:h 'commentstring'` option to infer comment structure.
--- Example usage:
--- - `gcip` - toggle comment (`gc`) *i*inside *p*aragraph
--- - `vapgc` - *v*isually select *a*round *p*aragraph and toggle comment (`gc`)
--- - `gcgc` - uncomment (`gc`, operator) comment block at cursor (`gc`, textobject)
---
--- The built-in `:h commenting` is based on 'mini.comment'. Yet this module is
--- still enabled as it provides more customization opportunities.
-later(function()
-	require("mini.comment").setup()
-end)
-
--- Autohighlight word under cursor with a customizable delay.
--- Word boundaries are defined based on `:h 'iskeyword'` option.
---
--- It is not enabled by default because its effects are a matter of taste.
--- Uncomment next line (use `gcc`) to enable.
--- later(function() require('mini.cursorword').setup() end)
-
--- Work with diff hunks that represent the difference between the buffer text and
--- some reference text set by a source. Default source uses text from Git index.
--- Also provides summary info used in developer section of 'mini.statusline'.
--- Example usage:
--- - `ghip` - apply hunks (`gh`) within *i*nside *p*aragraph
--- - `gHG` - reset hunks (`gH`) from cursor until end of buffer (`G`)
--- - `ghgh` - apply (`gh`) hunk at cursor (`gh`)
--- - `gHgh` - reset (`gH`) hunk at cursor (`gh`)
--- - `<Leader>go` - toggle overlay
---
--- See also:
--- - `:h MiniDiff-overview` - overview of how module works
--- - `:h MiniDiff-diff-summary` - available summary information
--- - `:h MiniDiff.gen_source` - available built-in sources
-later(function()
-	require("mini.diff").setup()
-end)
-
--- Git integration for more straightforward Git actions based on Neovim's state.
--- It is not meant as a fully featured Git client, only to provide helpers that
--- integrate better with Neovim. Example usage:
--- - `<Leader>gs` - show information at cursor
--- - `<Leader>gd` - show unstaged changes as a patch in separate tabpage
--- - `<Leader>gL` - show Git log of current file
--- - `:Git help git` - show output of `git help git` inside Neovim
---
--- See also:
--- - `:h MiniGit-examples` - examples of common setups
--- - `:h :Git` - more details about `:Git` user command
--- - `:h MiniGit.show_at_cursor()` - what information at cursor is shown
-later(function()
-	require("mini.git").setup()
-end)
-
--- Highlight patterns in text. Like `TODO`/`NOTE` or color hex codes.
--- Example usage:
--- - `:Pick hipatterns` - pick among all highlighted patterns
---
--- See also:
--- - `:h MiniHipatterns-examples` - examples of common setups
-later(function()
-	local hipatterns = require("mini.hipatterns")
-	local hi_words = MiniExtra.gen_highlighter.words
-	hipatterns.setup({
-		highlighters = {
-			-- Highlight a fixed set of common words. Will be highlighted in any place,
-			-- not like "only in comments".
-			fixme = hi_words({ "FIXME", "Fixme", "fixme" }, "MiniHipatternsFixme"),
-			hack = hi_words({ "HACK", "Hack", "hack" }, "MiniHipatternsHack"),
-			todo = hi_words({ "TODO", "Todo", "todo" }, "MiniHipatternsTodo"),
-			note = hi_words({ "NOTE", "Note", "note" }, "MiniHipatternsNote"),
-
-			-- Highlight hex color string (#aabbcc) with that color as a background
-			hex_color = hipatterns.gen_highlighter.hex_color(),
-		},
-	})
-end)
-
 later(function()
 	require("mini.jump").setup()
 end)
 later(function()
 	require("mini.jump2d").setup()
-end)
-
--- Special key mappings. Provides helpers to map:
--- - Multi-step actions. Apply action 1 if condition is met; else apply
---   action 2 if condition is met; etc.
--- - Combos. Sequence of keys where each acts immediately plus execute extra
---   action if all are typed fast enough. Useful for Insert mode mappings to not
---   introduce delay when typing mapping keys without intention to execute action.
---
--- See also:
--- - `:h MiniKeymap-examples` - examples of common setups
--- - `:h MiniKeymap.map_multistep()` - map multi-step action
--- - `:h MiniKeymap.map_combo()` - map combo
-later(function()
-	require("mini.keymap").setup()
-	-- Navigate 'mini.completion' menu with `<Tab>` /  `<S-Tab>`
-	MiniKeymap.map_multistep("i", "<Tab>", { "pmenu_next" })
-	MiniKeymap.map_multistep("i", "<S-Tab>", { "pmenu_prev" })
-	-- On `<CR>` try to accept current completion item, fall back to accounting
-	-- for pairs from 'mini.pairs'
-	MiniKeymap.map_multistep("i", "<CR>", { "pmenu_accept", "minipairs_cr" })
-	-- On `<BS>` just try to account for pairs from 'mini.pairs'
-	MiniKeymap.map_multistep("i", "<BS>", { "minipairs_bs" })
-end)
-
--- Window with text overview. It is displayed on the right hand side. Can be used
--- for quick overview and navigation. Hidden by default. Example usage:
--- - `<Leader>mt` - toggle map window
--- - `<Leader>mf` - focus on the map for fast navigation
--- - `<Leader>ms` - change map's side (if it covers something underneath)
---
--- See also:
--- - `:h MiniMap.gen_encode_symbols` - list of symbols to use for text encoding
--- - `:h MiniMap.gen_integration` - list of integrations to show in the map
---
--- NOTE: Might introduce lag on very big buffers (10000+ lines)
-later(function()
-	local map = require("mini.map")
-	map.setup({
-		-- Use Braille dots to encode text
-		symbols = { encode = map.gen_encode_symbols.dot("4x2") },
-		-- Show built-in search matches, 'mini.diff' hunks, and diagnostic entries
-		integrations = {
-			map.gen_integration.builtin_search(),
-			map.gen_integration.diff(),
-			map.gen_integration.diagnostic(),
-		},
-	})
-
-	-- Map built-in navigation characters to force map refresh
-	for _, key in ipairs({ "n", "N", "*", "#" }) do
-		local rhs = key
-			-- Also open enough folds when jumping to the next match
-			.. "zv"
-			.. "<Cmd>lua MiniMap.refresh({}, { lines = false, scrollbar = false })<CR>"
-		vim.keymap.set("n", key, rhs)
-	end
-end)
-
--- Move any selection in any direction. Example usage in Normal mode:
--- - `<M-j>`/`<M-k>` - move current line down / up
--- - `<M-h>`/`<M-l>` - decrease / increase indent of current line
---
--- Example usage in Visual mode:
--- - `<M-h>`/`<M-j>`/`<M-k>`/`<M-l>` - move selection left/down/up/right
-later(function()
-	require("mini.move").setup()
 end)
 
 -- Text edit operators. All operators have mappings for:
@@ -443,56 +268,6 @@ later(function()
 	require("mini.pairs").setup({ modes = { command = true } })
 end)
 
--- Pick anything with single window layout and fast matching. This is one of
--- the main usability improvements as it powers a lot of "find things quickly"
--- workflows. How to use a picker:
--- - Start picker, usually with `:Pick <picker-name>` command. Like `:Pick files`.
---   It shows a single window in the bottom left corner filled with possible items
---   to choose from. Current item has special full line highlighting.
---   At the top there is a current query used to filter+sort items.
--- - Type characters (appear at top) to narrow down items. There is fuzzy matching:
---   characters may not match one-by-one, but they should be in correct order.
--- - Navigate down/up with `<C-n>`/`<C-p>`.
--- - Press `<Tab>` to show item's preview. `<Tab>` again goes back to items.
--- - Press `<S-Tab>` to show picker's info. `<S-Tab>` again goes back to items.
--- - Press `<CR>` to choose an item. The exact action depends on the picker: `files`
---   picker opens a selected file, `help` picker opens help page on selected tag.
---   To close picker without choosing an item, press `<Esc>`.
---
--- Example usage:
--- - `<Leader>ff` - *f*ind *f*iles; for best performance requires `ripgrep`
--- - `<Leader>fg` - *f*ind inside files (a.k.a. "to *g*rep"); requires `ripgrep`
--- - `<Leader>fh` - *f*ind *h*elp tag
--- - `<Leader>fr` - *r*esume latest picker
--- - `:h vim.ui.select()` - implemented with 'mini.pick'
---
--- See also:
--- - `:h MiniPick-overview` - overview of picker functionality
--- - `:h MiniPick-examples` - examples of common setups
--- - `:h MiniPick.builtin` and `:h MiniExtra.pickers` - available pickers;
---   Execute one either with Lua function, `:Pick <picker-name>` command, or
---   one of `<Leader>f` mappings defined in 'plugin/20_keymaps.lua'
-later(function()
-	require("mini.pick").setup()
-end)
-
--- Manage and expand snippets (templates for a frequently used text).
--- Typical workflow is to type snippet's (configurable) prefix and expand it
--- into a snippet session.
---
--- How to manage snippets:
--- - 'mini.snippets' itself doesn't come with preconfigured snippets. Instead there
---   is a flexible system of how snippets are prepared before expanding.
---   They can come from pre-defined path on disk, 'snippets/' directories inside
---   config or plugins, defined inside `setup()` call directly.
--- - This config, however, does come with snippet configuration:
---     - 'snippets/global.json' is a file with global snippets that will be
---       available in any buffer
---     - 'after/snippets/lua.json' defines personal snippets for Lua language
---     - 'friendly-snippets' plugin configured in 'plugin/40_plugins.lua' provides
---       a collection of language snippets
---
--- How to expand a snippet in Insert mode:
 -- - If you know snippet's prefix, type it as a word and press `<C-j>`. Snippet's
 --   body should be inserted instead of the prefix.
 -- - If you don't remember snippet's prefix, type only part of it (or none at all)
@@ -513,11 +288,6 @@ end)
 -- - To end a snippet session when at final tabstop, keep typing or go into
 --   Normal mode. To force end snippet session, press `<C-c>`.
 --
--- See also:
--- - `:h MiniSnippets-overview` - overview of how module works
--- - `:h MiniSnippets-examples` - examples of common setups
--- - `:h MiniSnippets-session` - details about snippet session
--- - `:h MiniSnippets.gen_loader` - list of available loaders
 later(function()
 	-- Define language patterns to work better with 'friendly-snippets'
 	local latex_patterns = { "latex/**/*.json", "**/latex.json" }
@@ -558,13 +328,7 @@ end)
 later(function()
 	require("mini.splitjoin").setup()
 end)
-later(function()
-	require("mini.surround").setup()
-end)
 -- - `<Leader>ot` - trim all trailing whitespace in a buffer
 later(function()
 	require("mini.trailspace").setup()
-end)
-later(function()
-	require("mini.visits").setup()
 end)

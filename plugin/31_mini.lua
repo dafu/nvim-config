@@ -1,60 +1,10 @@
+local now, now_if_args, later = Config.now, Config.now_if_args, Config.later
 Config.now(function()
 	require("mini.icons").setup()
 	MiniIcons.mock_nvim_web_devicons()
 
 	require("mini.notify").setup()
 	vim.notify = require("mini.notify").make_notify()
-
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "StatusLine", { bg = "none" })
-	vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "none" })
-	require("mini.statusline").setup({
-		-- Whether to set Vim's settings for statusline (make it always shown with
-		-- 'laststatus' set to 2). To use global statusline in Neovim>=0.7.0, set
-		-- this to `false` and 'laststatus' to 3.
-		set_vim_settings = true,
-		content = {
-			inactive = function()
-				local filename = MiniStatusline.section_filename({ trunc_width = 2000 })
-				local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
-
-				return MiniStatusline.combine_groups({
-					{ hl = "LineNr", strings = { filename } },
-					"%<", -- Mark general truncate point
-					"%=", -- End left alignment
-					-- { hl = "LineNr", strings = { diagnostics } }, -- diagnostics } },
-					-- { hl = "LineNr", strings = { fileinfo } },
-				})
-			end,
-			active = function()
-				local mode, mode_hl = MiniStatusline.section_mode({ trunc_width = 2000 })
-				local filename = MiniStatusline.section_filename({ trunc_width = 2000 })
-				local git = MiniStatusline.section_git({ trunc_width = 75 })
-				local diff = MiniStatusline.section_diff({ trunc_width = 75 })
-				local diagnostics = MiniStatusline.section_diagnostics({ trunc_width = 75 })
-				local lsp = MiniStatusline.section_lsp({ trunc_width = 75 })
-				local fileinfo = MiniStatusline.section_fileinfo({ trunc_width = 2000 })
-				local location = MiniStatusline.section_location({ trunc_width = 75 })
-				local search = MiniStatusline.section_searchcount({ trunc_width = 75 })
-
-				return MiniStatusline.combine_groups({
-					{ hl = "WarningMsg", strings = { mode } },
-					-- { hl = mode_hl, strings = { mode } },
-					"%<", -- Mark general truncate point
-					{ hl = "LineNr", strings = { filename } },
-					"%=", -- End left alignment
-					{ hl = "WarningMsg", strings = { git } },
-					{ hl = "DiagnosticsOk", strings = { diagnostics, lsp } },
-					{ hl = "LineNr", strings = { diff, search, fileinfo } },
-				})
-			end,
-		},
-	})
-	-- require("mini.starter").setup()
-
-	require("mini.ai").setup()
-	require("mini.align").setup()
-	require("mini.comment").setup()
 
 	require("mini.pick").setup({
 		-- Delays (in ms; should be at least 1)
@@ -256,7 +206,7 @@ Config.now(function()
 	end)
 
 	-- highlight cursorword
-	require("mini.cursorword").setup()
-	vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", {}) -- no hl for current word
+	-- require("mini.cursorword").setup()
+	-- vim.api.nvim_set_hl(0, "MiniCursorwordCurrent", {}) -- no hl for current word
 	-- vim.api.nvim_set_hl(0, "MiniCursorword", { link = "IncSearch" }) -- link to search
 end)

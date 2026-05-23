@@ -46,9 +46,7 @@ vim.o.cursorlineopt  = 'screenline,number' -- Show cursor line per screen line
 
 -- Special UI symbols. More is set via 'mini.basics' later.
 vim.o.fillchars = 'eob: ,fold:╌'
-vim.o.listchars = 'extends:…,nbsp:␣,precedes:…,tab:> '
--- vim.o.listchars = { tab = "  ", trail = "·", nbsp = "␣", extends = "…", precedes = "…" }
--- vim.opt.fillchars:append("vert:│,horiz:─,horizdown:┬,horizup:┴,verthoriz:┼,vertleft:┤,vertright:├")
+vim.o.listchars = 'extends:…,nbsp:␣,precedes:…,tab:  ,trail:·' -- vim.opt.fillchars:append("vert:│,horiz:─,horizdown:┬,horizup:┴,verthoriz:┼,vertleft:┤,vertright:├")
 
 -- Folds (see `:h fold-commands`, `:h zM`, `:h zR`, `:h zA`, `:h zj`)
 vim.o.foldlevel   = 10       -- Fold nothing by default; set to 0 or 1 to fold
