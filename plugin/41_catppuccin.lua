@@ -1,5 +1,5 @@
-MiniDeps.now(function()
-	MiniDeps.add({ source = "catppuccin/nvim", name = "catppuccin" })
+Config.now(function()
+	vim.pack.add({ "https://github.com/catppuccin/nvim" })
 	require("catppuccin").setup({
 		compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
 		flavour = "mocha", -- latte, frappe, macchiato, mocha

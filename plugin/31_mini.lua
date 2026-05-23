@@ -1,6 +1,4 @@
-local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
-
-now(function()
+Config.now(function()
 	require("mini.icons").setup()
 	MiniIcons.mock_nvim_web_devicons()
 
@@ -47,108 +45,109 @@ now(function()
 					"%=", -- End left alignment
 					{ hl = "WarningMsg", strings = { git } },
 					{ hl = "DiagnosticsOk", strings = { diagnostics, lsp } },
-					{ hl = "LineNr", strings = { diff, search , fileinfo } },
+					{ hl = "LineNr", strings = { diff, search, fileinfo } },
 				})
 			end,
 		},
 	})
 	-- require("mini.starter").setup()
+
 	require("mini.ai").setup()
 	require("mini.align").setup()
 	require("mini.comment").setup()
 
-	require("mini.pick").setup(
-  {
-    -- Delays (in ms; should be at least 1)
-    delay = {
-      -- Delay between forcing asynchronous behavior
-      async = 10,
+	require("mini.pick").setup({
+		-- Delays (in ms; should be at least 1)
+		delay = {
+			-- Delay between forcing asynchronous behavior
+			async = 10,
 
-      -- Delay between computation start and visual feedback about it
-      busy = 50,
-    },
+			-- Delay between computation start and visual feedback about it
+			busy = 50,
+		},
 
-    -- Keys for performing actions. See `:h MiniPick-actions`.
-    mappings = {
-      caret_left  = '<Left>',
-      caret_right = '<Right>',
+		-- Keys for performing actions. See `:h MiniPick-actions`.
+		mappings = {
+			caret_left = "<Left>",
+			caret_right = "<Right>",
 
-      choose            = '<CR>',
-      choose_in_split   = '<C-s>',
-      choose_in_tabpage = '<C-t>',
-      choose_in_vsplit  = '<C-v>',
-      choose_marked     = '<M-CR>',
+			choose = "<CR>",
+			choose_in_split = "<C-s>",
+			choose_in_tabpage = "<C-t>",
+			choose_in_vsplit = "<C-v>",
+			choose_marked = "<M-CR>",
 
-      delete_char       = '<BS>',
-      delete_char_right = '<Del>',
-      delete_left       = '<C-u>',
-      delete_word       = '<C-w>',
+			delete_char = "<BS>",
+			delete_char_right = "<Del>",
+			delete_left = "<C-u>",
+			delete_word = "<C-w>",
 
-      mark     = '<C-x>',
-      mark_all = '<C-a>',
+			mark = "<C-x>",
+			mark_all = "<C-a>",
 
-      move_down  = '<C-n>',
-      move_start = '<C-g>',
-      move_up    = '<C-p>',
+			move_down = "<C-n>",
+			move_start = "<C-g>",
+			move_up = "<C-p>",
 
-      paste = '<C-r>',
+			paste = "<C-r>",
 
-      refine        = '<C-Space>',
-      refine_marked = '<M-Space>',
+			refine = "<C-Space>",
+			refine_marked = "<M-Space>",
 
-      scroll_down  = '<C-f>',
-      scroll_left  = '<C-h>',
-      scroll_right = '<C-l>',
-      scroll_up    = '<C-b>',
+			scroll_down = "<C-f>",
+			scroll_left = "<C-h>",
+			scroll_right = "<C-l>",
+			scroll_up = "<C-b>",
 
-      stop = '<Esc>',
+			stop = "<Esc>",
 
-      toggle_info    = '<S-Tab>',
-      toggle_preview = '<Tab>',
-    },
+			toggle_info = "<S-Tab>",
+			toggle_preview = "<Tab>",
+		},
 
-    -- General options
-    options = {
-      -- Whether to show content from bottom to top
-      content_from_bottom = false,
+		-- General options
+		options = {
+			-- Whether to show content from bottom to top
+			content_from_bottom = false,
 
-      -- Whether to cache matches (more speed and memory on repeated prompts)
-      use_cache = false,
-    },
+			-- Whether to cache matches (more speed and memory on repeated prompts)
+			use_cache = false,
+		},
 
-    -- Source definition. See `:h MiniPick-source`.
-    source = {
-      items = nil,
-      name  = nil,
-      cwd   = nil,
+		-- Source definition. See `:h MiniPick-source`.
+		source = {
+			items = nil,
+			name = nil,
+			cwd = nil,
 
-      match   = nil,
-      show    = nil,
-      preview = nil,
+			match = nil,
+			show = nil,
+			preview = nil,
 
-      choose        = nil,
-      choose_marked = nil,
-    },
+			choose = nil,
+			choose_marked = nil,
+		},
 
-    -- Window related options
-    window = {
-      -- Float window config (table or callable returning it)
-        -- relative = 'cursor', anchor = 'NW',
-        -- row = 0, col = 0, width = 40, height = 20,
-      config = {
-        anchor = 'NW',
-        row = 0, col = 0, width = 70, height = 30,
-        },
+		-- Window related options
+		window = {
+			-- Float window config (table or callable returning it)
+			-- relative = 'cursor', anchor = 'NW',
+			-- row = 0, col = 0, width = 40, height = 20,
+			config = {
+				anchor = "NW",
+				row = 0,
+				col = 0,
+				width = 70,
+				height = 30,
+			},
 
-      -- String to use as caret in prompt
-      prompt_caret = '>',
+			-- String to use as caret in prompt
+			prompt_caret = ">",
 
-      -- String to use as prefix in prompt
-      prompt_prefix = '',
-    },
-  }
-
-  )
+			-- String to use as prefix in prompt
+			prompt_prefix = "",
+		},
+	})
 
 	vim.keymap.set("n", "<leader>p", "<nop>")
 	vim.keymap.set("n", "<leader>pp", "<nop>")
@@ -203,47 +202,58 @@ now(function()
 		},
 	})
 
-	require("mini.files").setup({
-		content = {
-			filter = nil,
-			prefix = nil,
-			sort = nil,
-		},
+	now_if_args(function()
+		require("mini.files").setup({
+			content = {
+				filter = nil,
+				prefix = nil,
+				sort = nil,
+			},
 
-		mappings = {
-			close = "<ESC>",
-			go_in = "l",
-			go_in_plus = "<CR>",
-			go_out = "h",
-			go_out_plus = "-",
-			reset = "_",
-			reveal_cwd = "@",
-			show_help = "g?",
-			synchronize = "=",
-			trim_left = "<",
-			trim_right = ">",
-		},
+			mappings = {
+				close = "<ESC>",
+				go_in = "l",
+				go_in_plus = "<CR>",
+				go_out = "h",
+				go_out_plus = "-",
+				reset = "_",
+				reveal_cwd = "@",
+				show_help = "g?",
+				synchronize = "=",
+				trim_left = "<",
+				trim_right = ">",
+			},
 
-		options = {
-			permanent_delete = true,
-			use_as_default_explorer = true,
-		},
+			options = {
+				permanent_delete = true,
+				use_as_default_explorer = true,
+			},
 
-		windows = {
-			max_number = 2, -- math.huge,
-			preview = true,
-			width_focus = 30,
-			width_nofocus = 30,
-			width_preview = 30,
-		},
-	})
+			windows = {
+				max_number = 2, -- math.huge,
+				preview = true,
+				width_focus = 30,
+				width_nofocus = 30,
+				width_preview = 30,
+			},
+		})
 
-	vim.keymap.set("n", "-", function()
-		local buf_name = vim.api.nvim_buf_get_name(0)
-		local path = vim.fn.filereadable(buf_name) == 1 and buf_name or vim.fn.getcwd()
-		MiniFiles.open(path)
-		MiniFiles.reveal_cwd()
-	end, { desc = "Open Mini Files" })
+		vim.keymap.set("n", "-", function()
+			local buf_name = vim.api.nvim_buf_get_name(0)
+			local path = vim.fn.filereadable(buf_name) == 1 and buf_name or vim.fn.getcwd()
+			MiniFiles.open(path)
+			MiniFiles.reveal_cwd()
+		end, { desc = "Open Mini Files" })
+		-- Add common bookmarks for every explorer. Example usage inside explorer:
+		-- - `'c` to navigate into your config directory
+		-- - `g?` to see available bookmarks
+		local add_marks = function()
+			MiniFiles.set_bookmark("c", vim.fn.stdpath("config"), { desc = "Config" })
+			MiniFiles.set_bookmark("~", "~", { desc = "Home" })
+			MiniFiles.set_bookmark("w", vim.fn.getcwd, { desc = "Working directory" })
+		end
+		Config.new_autocmd("User", "MiniFilesExplorerOpen", add_marks, "Add bookmarks")
+	end)
 
 	-- highlight cursorword
 	require("mini.cursorword").setup()
