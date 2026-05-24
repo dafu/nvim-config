@@ -25,7 +25,7 @@ nmap("<C-N>", ":bnext<CR>")
 nmap("<C-P>", ":bprev<CR>")
 
 -- LSP
-nmap_leader("wf", "<cmd>Format<CR>")
+-- nmap_leader("wf", "<cmd>Format<CR>")
 nmap("[d",  vim.diagnostic.goto_prev,  "Go to previous diagnostic")
 nmap("]d",  vim.diagnostic.goto_next,  "Go to next diagnostic")
 nmap_leader("e",  vim.diagnostic.open_float, "Show diagnostic errors")

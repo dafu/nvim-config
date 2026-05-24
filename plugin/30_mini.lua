@@ -237,8 +237,8 @@ later(function()
   require("mini.cmdline").setup()
 end)
 
--- Diff: priority 1 to avoid overriding diagnostic signs.
 later(function()
+-- Diff: priority 1 to avoid overriding diagnostic signs.
   require("mini.diff").setup({ view = { priority = 1 } })
 end)
 
@@ -246,7 +246,6 @@ later(function()
   require("mini.git").setup()
 end)
 
--- Highlight FIXME/HACK/TODO/NOTE keywords and hex colors inline.
 later(function()
   local hipatterns = require("mini.hipatterns")
   hipatterns.setup({
