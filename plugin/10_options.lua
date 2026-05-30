@@ -4,7 +4,7 @@ vim.fn.setenv("LANG", "en_US")
 vim.cmd("language en_US")
 
 vim.o.mouse       = 'a'            -- Enable mouse
-vim.o.mousescroll = 'ver:25,hor:6' -- Customize mouse scroll
+-- vim.o.mousescroll = 'ver:25,hor:6' -- Customize mouse scroll
 vim.o.switchbuf   = 'usetab'       -- Use already opened buffers when switching
 vim.o.undofile    = true           -- Enable persistent undo
 -- vim.o.backup = false -- Don't store backup while overwriting the file
