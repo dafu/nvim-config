@@ -96,9 +96,7 @@ later(function()
 end)
 
 -- Snippets ===================================================================
-later(function()
-	add({ "https://github.com/rafamadriz/friendly-snippets" })
-end)
+-- later(function() add({ "https://github.com/rafamadriz/friendly-snippets" }) end)
 
 now_if_args(function()
 	add({ "https://github.com/mason-org/mason.nvim" })
@@ -115,28 +113,28 @@ now_if_args(function()
 end)
 
 -- linter
-now_if_args(function()
-	add({ "https://github.com/mfussenegger/nvim-lint" })
-	local lint = require("lint")
-	lint.linters_by_ft = {
-		markdown = { "markdownlint" },
-		-- go = { "golangcilint" },
-		-- css = { "stylelint" },
-		sh = { "shellcheck" },
-		html = { "eslint_d" },
-		gohtml = { "eslint_d" },
-		gohtmltmpl = { "htmlhint" },
-		js = { "eslint_d" },
-		sql = { "sqruff" },
-	}
-
-	local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-	vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-		group = lint_augroup,
-		callback = function()
-			if vim.bo.modifiable then
-				lint.try_lint()
-			end
-		end,
-	})
-end)
+-- now_if_args(function()
+-- 	add({ "https://github.com/mfussenegger/nvim-lint" })
+-- 	local lint = require("lint")
+-- 	lint.linters_by_ft = {
+-- 		markdown = { "markdownlint" },
+-- 		-- go = { "golangcilint" },
+-- 		-- css = { "stylelint" },
+-- 		sh = { "shellcheck" },
+-- 		html = { "eslint_d" },
+-- 		gohtml = { "eslint_d" },
+-- 		gohtmltmpl = { "htmlhint" },
+-- 		js = { "eslint_d" },
+-- 		sql = { "sqruff" },
+-- 	}
+--
+-- 	local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+-- 	vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+-- 		group = lint_augroup,
+-- 		callback = function()
+-- 			if vim.bo.modifiable then
+-- 				lint.try_lint()
+-- 			end
+-- 		end,
+-- 	})
+-- end)

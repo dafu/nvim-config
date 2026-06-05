@@ -42,6 +42,7 @@ nmap_leader("hh", [[:luado MiniDiff.toggle_overlay()<CR>]])
 
 -- BUFFERS / FILES
 nmap_leader("w",  ":w<CR>")
+nmap_leader("ww",  ":w<CR>")
 nmap_leader("wq", ":wq<CR>")
 nmap_leader("q",  ":q<CR>")
 nmap_leader("Q",  ":q!<CR>")
