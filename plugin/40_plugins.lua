@@ -112,6 +112,12 @@ now_if_args(function()
 	})
 end)
 
+now_if_args(function()
+  add ({"https://github.com/sindrets/diffview.nvim"})
+  add({"https://github.com/NeogitOrg/neogit"})
+  require("neogit").setup()
+end)
+
 -- linter
 -- now_if_args(function()
 -- 	add({ "https://github.com/mfussenegger/nvim-lint" })
