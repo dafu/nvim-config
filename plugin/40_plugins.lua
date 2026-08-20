@@ -118,6 +118,27 @@ now_if_args(function()
   require("neogit").setup()
 end)
 
+-- Markdown preview ===========================================================
+Config.on_filetype("markdown", function()
+	add({ "https://github.com/OXY2DEV/markview.nvim" })
+
+	local presets = require("markview.presets")
+	require("markview").setup({
+		preview = {
+			icon_provider = "mini", -- mini.icons already loaded
+			modes = { "n", "no", "c" }, -- render outside insert
+			hybrid_modes = { "n" }, -- raw text on cursor line
+			linewise_hybrid_mode = true,
+		},
+		markdown = {
+			headings = presets.headings.glow,
+			horizontal_rules = presets.horizontal_rules.thin,
+			tables = presets.tables.rounded,
+		},
+	})
+	require("markview.extras.checkboxes").setup()
+end)
+
 -- linter
 -- now_if_args(function()
 -- 	add({ "https://github.com/mfussenegger/nvim-lint" })
